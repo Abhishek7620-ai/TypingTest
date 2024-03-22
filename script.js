@@ -1047,3 +1047,19 @@ function passageNumber() {
 
 
 
+// Add event listeners for mousedown and keydown events
+document.addEventListener('mousedown', function(event) {
+    // Check if the right mouse button is clicked
+    if (event.button === 2) {
+        // If the right mouse button is clicked, prevent the default behavior
+        event.preventDefault();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    // Check if the context menu key is pressed (usually the "Menu" key on Windows keyboards)
+    if (event.key === 'ContextMenu' || event.keyCode === 93) {
+        // If the context menu key is pressed, prevent the default behavior
+        event.preventDefault();
+    }
+});
