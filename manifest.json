@@ -1,13 +1,9 @@
 {
-    "name": "Your App Name",
-    "short_name": "App Name",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "description": "Description of your app",
-    "lang": "en",
-    "icons": [],
-    "orientation": "any"
-  }
-  
+  "name": "Typing Test PWA",
+  "short_name": "Typing Test",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f5dc",
+  "theme_color": "#007bff",
+  "icons": []
+}
