@@ -1,0 +1,266 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  /* background-image: url(bg.jpg); Light gray background */
+  background-color: #f5f5dc;
+
+    color: #333; /* Dark text color */
+  }
+  
+  
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4CAF50; /* Green background color */
+  padding: 8px 16px; /* Reduced padding */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+/* Navbar Spans */
+.navbar span {
+  color: #fff; /* White text color */
+  font-weight: bold;
+  margin-right: 12px; /* Reduced margin */
+  font-size: 14px; /* Reduced font size */
+}
+
+/* Select Inputs */
+#selectTime input,
+select {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 8px; /* Reduced margin */
+  background-color: #fff; /* White background color */
+  font-size: 14px; /* Reduced font size */
+}
+
+/* Buttons */
+.controls button {
+  padding: 6px 12px; /* Reduced padding */
+  margin-right: 8px; /* Reduced margin */
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue button color */
+  color: #fff; /* White text color */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px; /* Reduced font size */
+}
+
+/* Button Hover Effect */
+.controls button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Adjust Font Size Button */
+#decreaseFontSize,
+#increaseFontSize {
+  font-size: 14px; /* Reduced font size */
+}
+
+/* Close Button */
+#closeButton {
+  background-color: #dc3545; /* Red close button color */
+}
+
+/* Close Button Hover Effect */
+#closeButton:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+  
+  
+  
+
+/* Custom select styles */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+}
+
+  
+  /* Main container1 styles */
+  .container1 {
+    max-width: 1200px;
+    margin: 20px auto; /* Center the container */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start */
+  }
+  
+  /* Box and textarea styles */
+  .box, textarea {
+    background-color: #fff; /* White background */
+    font-weight:bold;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 900px; /* Retain width for desktop */
+    font-family: 'Arial', sans-serif; /* Use Arial as the font family */
+    line-height: 1.6; /* Adjust line height for better readability */
+    word-spacing: 2px; /* Adjust word spacing */
+  }
+  
+  .box {
+    height: 250px; /* Increased height */
+    margin-bottom: 20px; /* Add margin */
+    overflow: auto; /* Make the box scrollable */
+  }
+  
+  textarea {
+    height: 250px; /* Increased height */
+    width: 100%;
+    resize: vertical;
+  }
+  
+  /* Counts box styles */
+  #countsBox {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light gray background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 250px; /* Set width */
+    margin: 20px auto 10px auto; /* Center horizontally with margins */
+    text-align: left; /* Align text to the left */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Align items vertically */
+}
+
+#countsBox span {
+    margin-bottom: 10px; /* Add space between elements */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a modern sans-serif font */
+    font-size: 16px; /* Set font size */
+    color: #333; /* Dark gray text color */
+    line-height: 1.4; /* Improved readability with slightly increased line height */
+}
+
+#countsBox span:last-child {
+    margin-bottom: 0; /* Remove margin bottom for the last span */
+}
+
+
+
+
+  
+  /* Counts list styles */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #count li {
+    margin-bottom: 15px; /* Add margin between list items */
+    font-weight: bold; /* Make list items bold */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Align items with space between */
+    align-items: center; /* Align items vertically */
+  }
+  
+  /* Submit button styles */
+  #submitBtn {
+    padding: 8px 16px; /* Decrease padding */
+    font-size: 16px;
+    background-color: #000080;
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto; /* Set width to auto */
+    display: block; /* Change display to block */
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 10px; /* Add margin top */
+    float:right;
+    margin-right:25%;
+  }
+  
+  #submitBtn:hover {
+    background-color: #0056b3; /* Darker blue button hover color */
+  }
+  .result1 {
+  
+    font-size: 16px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 0;
+    transform:translate(-50%,-50%);
+    padding: 0 ;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 65%; /* Adjust the width as needed */
+    height: 90%; /* Adjust the height as needed */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+    list-style-type: none;
+  }
+  /* CSS for the Reset Time button */
+  .prevent-selection {
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* WebKit (Safari, Chrome) */
+    -moz-user-select: none; /* Mozilla Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+#resetTimeButton {
+  background-color: #e8eee9; /* Green */
+  width: 120px;
+  border: none;
+  color: #3498db;
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 10px; /* Add some space between the button and the timer */
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+#resetTimeButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Test</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <span>Student Name</span>
+    <span>Passage Name: <span id="displaypassage">Passage 1</span></span>
+    <span id="selectPassage">
+      <select id="passageDropdown" onchange="changePassage(value)">
+        <option value="Easy Level">Easy</option>
+        <option value="Passage 1">Passage 1</option>
+        <option value="Passage 2">Passage 2</option>
+        <option value="Passage 3">Passage 3</option>
+        <option value="Passage 4">Passage 4</option>
+        <option value="Passage 5">Passage 5</option>
+        <option value="Passage 6">Passage 6</option>
+        <option value="Passage 7">Passage 7</option>
+        <option value="Passage 8">Passage 8</option>
+        <option value="Passage 9">Passage 9</option>
+        <option value="Passage 10">Passage 10</option>
+        <option value="Passage 11">Passage 11</option>
+        <option value="Passage 12">Passage 12</option>
+        <option value="Passage 13">Passage 13</option>
+        <option value="Passage 14">Passage 14</option>
+        <option value="Passage 15">Passage 15</option>
+        <!-- Add more options as needed -->
+    </select>
+    <span id="selectPassage">
+      <select id="passageDropdownHard"  onchange="changePassage(value);resetAllSelects()">
+        <option value="Hard Level">Hard</option>
+        <option value="Passage 51">Passage 51</option>
+        <option value="Passage 52">Passage 52</option>
+        <option value="Passage 53">Passage 53</option>
+        <option value="Passage 54">Passage 54</option>
+        <option value="Passage 55">Passage 55</option>
+        <option value="Passage 56">Passage 56</option>
+        <option value="Passage 57">Passage 57</option>
+        <option value="Passage 58">Passage 58</option>
+        <option value="Passage 59">Passage 59</option>
+        <option value="Passage 60">Passage 60</option>
+        <option value="Passage 61">Passage 61</option>
+        <option value="Passage 62">Passage 62</option>
+        <option value="Passage 63">Passage 63</option>
+        <option value="Passage 64">Passage 64</option>
+        <option value="Passage 65">Passage 65</option>
+        <!-- Add more options as needed -->
+    </select>
+    <span id="selectPassage">
+      <select id="passageDropdownMedium"  onchange="changePassage(value)">
+        <option value="Medium Level">Medium</option>
+        <option value="Passage 1">Passage 1</option>
+        <option value="Passage 2">Passage 2</option>
+        <option value="Passage 3">Passage 3</option>
+        <option value="Passage 4">Passage 4</option>
+        <option value="Passage 5">Passage 5</option>
+        <option value="Passage 6">Passage 6</option>
+        <option value="Passage 7">Passage 7</option>
+        <option value="Passage 8">Passage 8</option>
+        <option value="Passage 9">Passage 9</option>
+        <option value="Passage 10">Passage 10</option>
+        <option value="Passage 11">Passage 11</option>
+        <option value="Passage 12">Passage 12</option>
+        <option value="Passage 13">Passage 13</option>
+        <option value="Passage 14">Passage 14</option>
+        <option value="Passage 15">Passage 15</option>
+        <!-- Add more options as needed -->
+    </select>
+    
+    </span>
+    
+    <span id="selectTime">
+        <input id="timeInput"  placeholder="Enter Time" onchange="updateTimerforSelect()">
+    </span>
+    <span>Time:
+      <span id="screenTimer">10:00</span><button id="resetTimeButton" onclick="resetTimer()">Reset Time</button>
+  </span>
+    
+    
+    
+   
+    
+    <div class="controls">
+        <span>Adjust Font Size</span>
+        <button id="decreaseFontSize">-</button>
+        <button id="increaseFontSize">+</button>
+        <button id="closeButton">Close</button>
+    </div>
+</div>
+
+
+
+  
+
+<div class="container1">
+  <div class="left-side">
+    <div class="box prevent-selection" id="loremIpsumBox">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque euismod justo vel eros cursus, id gravida purus interdum. Proin non justo et nisi hendrerit ultricies. Fusce vitae dui nec odio suscipit pulvinar. Aenean fermentum, elit nec commodo congue, enim purus cursus risus, id dignissim felis purus id tellus. In fermentum arcu nec justo finibus tristique.
+    </div>
+    <strong></strong><textarea name="text" id="textInput" placeholder="Type your text here..."></textarea><strong>
+  </div>
+  <div class="right-side">
+    <div id="countsBox">
+      <ul id="count">
+        <li>Keystrokes count: <span id="keystrokesCount">0</span></li>
+        <li>Total Words Count: <span id="totalWordsCount">0</span></li>
+        <li>Typed Word count: <span id="wordCount">0</span></li>
+        <li>Pending Words Count: <span id="pendingWord">0</span></li>
+        <li>Backspace Count: <span id="backspaceCount">0</span></li>
+      </ul>
+    </div>
+    <button id="submitBtn"  onclick="showPopup();stopTimer()">Submit</button>
+  </div>
+</div>
+<div id="popup" class="popup"></div>
+<div id="result1" class ="result1"></div>
+<script src="passages.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
