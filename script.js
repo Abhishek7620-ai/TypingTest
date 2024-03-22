@@ -271,7 +271,6 @@ inputElement.addEventListener('input', function(event) {
     
     correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
     correctWords2000 = calculateCorrectKeystrokes(sample, words)[1];
-
     
 
 
@@ -309,11 +308,8 @@ inputElement.addEventListener('input', function(event) {
   }
 });
 
+
 inputElement.addEventListener('keyup', function(event) {
-    if (!startTime) {
-        startTime = new Date();
-        timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
-    }
     
     if (event.key === 'Backspace') {
         // Update the word count after backspace
@@ -330,7 +326,6 @@ inputElement.addEventListener('keyup', function(event) {
 });
 let CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1]
 function updateTimer() {
-  CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1]
     const currentTime = new Date();
     elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000);
     const remainingTimeInSeconds = CurrentDisplaySeconds - elapsedTimeInSeconds; // 10 minutes = 600 seconds
@@ -344,6 +339,7 @@ function updateTimer() {
         showPopup();
     }
 }
+
 function resetTimer() {
     clearInterval(timerInterval); // Clear any existing interval
     startTime = false;
@@ -831,7 +827,7 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
       userIndex++;
   }
 
-return [correctKeystrokes+correctWords-1, correctWords];
+  return [Math.max(correctKeystrokes+correctWords-1,0), correctWords];
 }
 
 
@@ -1047,3 +1043,162 @@ function passageNumber() {
 
 
 
+
+// Object mapping languages to keyboard layouts
+const keyboardLayouts = {
+  'en-US': 'qwerty', // English US layout
+  'hi-IN': 'devanagari', // Hindi Devanagari layout
+  // Add more language-layout mappings as needed
+};
+
+// Function to detect user's language
+function detectLanguage() {
+  // Example: using navigator.language to get the language
+  return navigator.language;
+}
+
+const marathiKeyboardMapping = {
+  '`': '़',
+  '1': '१',
+  '2': '२',
+  '3': '३',
+  '4': '४',
+  '5': '५',
+  '6': '६',
+  '7': '७',
+  '8': '८',
+  '9': '९',
+  '0': '०',
+  '-': 'ञ',
+  '=': 'ृ',
+  '[': 'ख्‍',
+  ']': ',',
+  '\\': '.',
+  ';': 'य',
+  "'": 'श्‍',
+  ',': 'ए',
+  '.': 'ण्‍',
+  '/': 'ध्‍',
+  ' ': ' ',
+  '~': 'द्य',
+  '!': '।',
+  '@': '/',
+  '#': ':',
+  '$': 'रऱ्‍',
+  '%': '-',
+  '^': '"',
+  '&': "'",
+  '*': 'द्ध',
+  '(': 'त्र',
+  ')': 'ऋ',
+  '_': '.',
+  '+': '्',
+  '{': 'क्ष्‍',
+  '}': 'द्व',
+  '|': '',
+  ':': 'रू',
+  '"': 'ष्‍',
+  '<': 'ढ',
+  '>': 'झ',
+  '?': 'घ्‍',
+  'A': 'ा',
+  'B': 'ठ',
+  'C': 'ब्‍',
+  'D': 'क्‍',
+  'E': 'म्‍',
+  'F': 'थ्‍',
+  'G': 'ळ',
+  'H': 'भ्‍',
+  'I': 'प्‍',
+  'J': 'श्र',
+  'K': 'ज्ञ',
+  'L': 'स्‍',
+  'M': 'ड',
+  'N': 'छ',
+  'O': 'व्‍',
+  'P': 'च्‍',
+  'Q': 'फ',
+  'R': 'त्‍',
+  'S': 'ै',
+  'T': 'ज्‍',
+  'U': 'न्‍',
+  'V': 'ट',
+  'W': 'ॅ',
+  'X': 'ग्‍',
+  'Y': 'ल्‍',
+  'Z': 'र्‍',
+  'a': 'ं',
+  'b': 'इ',
+  'c': 'ब',
+  'd': 'क',
+  'e': 'म',
+  'f': 'ि',
+  'g': 'ह',
+  'h': 'ी',
+  'i': 'प',
+  'j': 'र',
+  'k': 'ा',
+  'l': 'स',
+  'm': 'उ',
+  'n': 'द',
+  'o': 'व',
+  'p': 'च',
+  'q': 'ु',
+  'r': 'त',
+  's': 'े',
+  't': 'ज',
+  'u': 'न',
+  'v': 'अ',
+  'w': 'ू',
+  'x': 'ग',
+  'y': 'ल',
+  'z': '्र',
+};
+
+
+
+
+
+
+
+function replaceWithMarathi(event) {
+  const typedKey = event.key.toLowerCase(); // Convert to lowercase for case insensitivity
+  const marathiEquivalent = marathiKeyboardMapping[typedKey];
+  
+  if (marathiEquivalent) {
+    const selectionStart = event.target.selectionStart;
+    const selectionEnd = event.target.selectionEnd;
+    const textBefore = event.target.value.substring(0, selectionStart);
+    const textAfter = event.target.value.substring(selectionEnd);
+    event.target.value = textBefore + marathiEquivalent + textAfter;
+    event.preventDefault(); // Prevent the default behavior of the key
+    event.target.setSelectionRange(selectionStart + 1, selectionStart + 1); // Move cursor to the next position
+  }
+}
+function convertKeyBoardToMarathi(){
+inputElement.addEventListener('keypress', replaceWithMarathi);
+}
+function convertKeyboardToEnglish() {
+  inputElement.removeEventListener('keypress', replaceWithMarathi);
+}
+function startTimerforButton() {
+  if (!startTime) {
+      startTime = new Date();
+      clearInterval(timerInterval); // Clear any existing interval
+      timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
+  }
+}
+
+// script.js
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}

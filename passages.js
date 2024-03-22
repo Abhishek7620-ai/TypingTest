@@ -225,21 +225,7 @@ And so, as we navigate the urban landscape, let us embrace the diversity and com
 
 
 `;
-let passage60 = `As the sun sets over the horizon, casting hues of orange and pink across the sky, the world prepares to embrace the tranquility of the night. In the stillness of dusk, a sense of calm descends upon the land, and the hustle and bustle of the day give way to a peaceful serenity.
-
-For many creatures, the coming of night signals the beginning of their day. Nocturnal animals emerge from their daytime hiding spots, ready to hunt, forage, and explore under the cover of darkness. Owls take flight, their silent wings slicing through the air as they search for prey. Bats flit through the night sky, their echolocation guiding them to insects and other small creatures.
-
-But for others, the night brings rest and rejuvenation. People retreat to their homes, seeking refuge from the outside world. The streets empty, and a quiet settles over the city, broken only by the occasional passing car or distant voice. Inside, families gather around dinner tables, sharing stories and laughter as they unwind from the day's activities.
-
-Yet, even in the stillness of the night, there is a sense of life and energy that pulses through the darkness. Stars twinkle overhead, their light piercing the velvety blackness of the night sky. The moon rises, casting a silvery glow over the landscape below. And in the distance, the rhythmic chirping of crickets provides a soothing backdrop to the symphony of the night.
-
-And so, as the world settles into sleep, let us embrace the peace and tranquility of the night. For in the darkness, there is beauty; in the silence, there is solace. And as the night unfolds before us, let us revel in its mysteries and marvels, knowing that each new dawn brings the promise of a fresh beginning.
-
-
-
-
-
-`;
+let passage60 = `प्रेम हा एक अद्भुत अहसास आहे. प्रेमात, व्यक्ती त्याच्या जीवनात नवीन काही सुंदर अनुभवतो. प्रेमाच्या माध्यमातून आपल्याला अजूनही अधिक दिलगीर आणि सांगण्याची क्षमता मिळते. प्रेम हे न फक्त व्यक्तींच्या अस्तित्वाची मान्यता करतं, तर प्रेम हा प्राणिसाठी अत्यंत महत्त्वाचं आहे. प्रेम हा एक अनंत विश्वातील सर्वांच्या आवाज आणि भावना आहे. तो एक सुंदर आणि परिपूर्ण अनुभव आहे ज्याने आपल्या जीवनात नवीन आणि अद्वितीय सांगण्याची क्षमता वाढविली आहे`;
 let passage61 = "";
 let passage62 = "";
 let passage63 = "";
