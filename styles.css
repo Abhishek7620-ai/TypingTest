@@ -535,3 +535,98 @@ button:hover {
 .table td:nth-child(2) {
 width: 5%; /* Adjust the width as needed */
 }
+
+.container2 {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Adjust as needed */
+  height: 90%; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.box2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  width: 45%;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  height:100%;
+}
+
+
+#signupForUser {
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; /* Adjust as needed */
+  height: 100%; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+.form-title {
+  text-align: center;
+}
+#maincontainer{
+  display:none;
+}

@@ -242,6 +242,11 @@ let previousCharacterCount = inputElement.value.length;
 let currentCharacterCount = 0;
 
 inputElement.addEventListener('input', function(event) {
+  if (!startTime) {
+    startTime = new Date();
+    clearInterval(timerInterval); // Clear any existing interval
+    timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
+}
     let sample = upperBoxText.innerText.trim().split(' ');
     
     currentValue = inputElement.value;
@@ -254,16 +259,9 @@ inputElement.addEventListener('input', function(event) {
     
     currentCharacterCount = currentValue.length;
     flag =1;
-    if(prevWordCount>wordCount && flag){
-      //correctKeyStroke2000 -= sample[prevWordCount]-sample(wordIndex);
-      flag = 0;
-    }
     prevWordCount = wordCount;
 
-     if (currentCharacterCount < previousCharacterCount && flag) {
-      correctKeyStroke2000 -= previousCharacterCount-currentCharacterCount;
-        // Increment the backspace count
-        flag = 0;
+     if (currentCharacterCount < previousCharacterCount) {
         
         backSpaceCount.textContent = `${parseInt(backSpaceCount.textContent) + (previousCharacterCount - currentCharacterCount)}`;
         resultBackSpaceCount = backSpaceCount.textContent;
@@ -271,7 +269,9 @@ inputElement.addEventListener('input', function(event) {
     
     correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
     correctWords2000 = calculateCorrectKeystrokes(sample, words)[1];
-    
+    document.getElementById("errorcount").textContent = (calculateCorrectKeystrokes(sample, words)[2]);
+    document.getElementById("box2").innerHTML = calculateCorrectKeystrokes(sample, words)[3].join(" ");
+    document.getElementById("box1").innerHTML = calculateCorrectKeystrokes(sample, words)[4].join(" ");
 
 
   
@@ -414,48 +414,71 @@ function stopTimer() {
 
 }
 function calculateCorrectKeystrokes(screenWords, userWords) {
+  let arrayForComparingPassage2 =[...screenWords]
+  let arrayForComparingPassage = [];
   let correctKeystrokes = 0;
   let correctWords = 0;
+
   let screenIndex = 0;
   let userIndex = 0;
+  let errorCount = 0;
 
-  // Iterate through both arrays
   while (screenIndex < screenWords.length && userIndex < userWords.length) {
+      // Check if the words match exactly
       if (screenWords[screenIndex] === userWords[userIndex]) {
-          // Count characters in the matched word
           correctKeystrokes += screenWords[screenIndex].length;
           correctWords++;
-
-          // Move to the next word in both inputs
-          screenIndex++;
-          userIndex++;
+          arrayForComparingPassage.push(`<span style='color:green;font-weight:bold'>${screenWords[screenIndex]}</span>`)
+          arrayForComparingPassage2[userIndex] =`<span style='color:green;font-weight:bold'>${screenWords[screenIndex]}</span>`
       } else {
-          // Check if the current word in user input is a substring of any word in screen input
-          let found = false;
-          for (let i = screenIndex; i < screenWords.length; i++) {
-              if (screenWords[i].startsWith(userWords[userIndex])) {
-                  // If found, penalize for substitution or addition
-                  correctKeystrokes -= screenWords[i].length - userWords[userIndex].length;
-                  screenIndex = i + 1;
-                  userIndex++;
-                  found = true;
-                  break;
-              }
+          // Check for different types of error
+          arrayForComparingPassage.push(`<span style='color:red'>${ userWords[userIndex]}</span>`)
+          arrayForComparingPassage2[userIndex] = `<span style ="background-color:yellow">${ screenWords[userIndex]}</span>`
+          arrayForComparingPassage2[screenWords.indexOf(userWords[userIndex])] =`<span style='color:green;font-weight:bold'>${screenWords[screenWords.indexOf(userWords[userIndex])]}</span>`
+          
+          
+          // Omission of word
+          errorCount++;
+          console.log(errorCount)
+
+          if (screenWords.slice(screenIndex + 1).join(" ").includes(userWords[userIndex])) {
+              screenIndex++;
           }
-          if (!found) {
-              // If not found, move to the next word in user input
+          // Substitution of a wrong word or addition of a word
+          else if (userWords.slice(userIndex + 1).join(" ").includes(screenWords[screenIndex])) {
               userIndex++;
           }
-      }
-  }
+          // Spelling errors (repetition, addition, transposition, omission, substitution of letters)
+          else {
+              let screenWord = screenWords[screenIndex];
+              let userWord = userWords[userIndex];
+              let errors = 0;
 
-  // Check for any remaining words in the user input
-  while (userIndex < userWords.length) {
+              // Compare each character
+              for (let i = 0; i < Math.min(screenWord.length, userWord.length); i++) {
+                  if (screenWord[i] !== userWord[i]) {
+                      errors++;
+                  }
+              }
+
+              // Handle differences in word lengths
+              errors += Math.abs(screenWord.length - userWord.length);
+
+              // Penalize for each mistake
+              correctKeystrokes += (screenWord.length - errors);
+          }
+      }
+
+      screenIndex++;
       userIndex++;
   }
 
-  return [Math.max(correctKeystrokes+correctWords-1,0), correctWords];
+  return [Math.max(correctKeystrokes+correctWords-1,0), correctWords,errorCount,arrayForComparingPassage,arrayForComparingPassage2];
 }
+
+
+
+
 
 
 
@@ -870,12 +893,12 @@ function closePopup() {
 cancelButton.addEventListener('click', closePopup);
 confirmButton.addEventListener('click', function(){
   // closePopup();
-  showPopup();
+  showCompareScreen();
   closePopup();
 });
 document.getElementById("OkButton").addEventListener('click', function(){
   // closePopup();
-  showPopup();
+ showCompareScreen();
   document.getElementById("TimeEndedPopup").style.display = 'none';
 });
 document.getElementById("CancelTimeButton").addEventListener('click', function(){
@@ -883,3 +906,62 @@ document.getElementById("CancelTimeButton").addEventListener('click', function()
   document.getElementById("TimeEndedPopup").style.display = 'none';
   enableInput();
 });
+
+
+function showCompareScreen(){
+  document.getElementById("comparescreen").style.display = "flex";
+}
+function validateSignupForm() {
+  var signupUsername = document.getElementById("signup_username").value;
+  var signupPassword = document.getElementById("signup_password").value;
+  var confirmPassword = document.getElementById("confirm_password").value;
+  var email = document.getElementById("email").value;
+  var fullname = document.getElementById("fullname").value;
+  var dob = document.getElementById("dob").value;
+  var signupError = document.getElementById("signupError");
+
+  // Simple validation
+  if (signupUsername === "" || signupPassword === "" || confirmPassword === "" || email === "" || fullname === "" || dob === "") {
+      signupError.innerText = "All fields are required.";
+      return false;
+  }
+
+  // Password confirmation
+  if (signupPassword !== confirmPassword) {
+      signupError.innerText = "Passwords do not match.";
+      return false;
+  }
+
+  // You can add more complex validation here if needed
+
+  return true;
+}
+
+
+// script.js
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+  const formDataJson = {};
+  formData.forEach((value, key) => {
+    formDataJson[key] = value;
+  });
+
+  sendDataToGoogleSheets(formDataJson);
+});
+
+async function sendDataToGoogleSheets(formData) {
+  try {
+    const response = await axios.post(
+      'https://script.google.com/macros/s/AKfycbwh1QwPiZgPF6csBQ_0juYYJ7QAZTdXYplRRN08RZKL0zI1xE0hRfvUNFe2fRbRKDOspg/exec', // Replace with your Google Apps Script web app URL
+      formData
+    );
+    console.log('Form submitted successfully:', response.data);
+    alert('Form submitted successfully!');
+    // Clear form fields if needed
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('An error occurred while submitting the form.');
+  }
+}
