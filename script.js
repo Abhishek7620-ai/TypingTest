@@ -800,7 +800,6 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
       if (screenWords[screenIndex] === userWords[userIndex]) {
           // Count characters in the matched word
           correctKeystrokes += screenWords[screenIndex].length;
-          correctKeystrokes++; // Add 1 for the space after the word
           correctWords++;
 
           // Move to the next word in both inputs
@@ -832,7 +831,7 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
       userIndex++;
   }
 
-  return [correctKeystrokes, correctWords];
+return [correctKeystrokes+correctWords-1, correctWords];
 }
 
 
