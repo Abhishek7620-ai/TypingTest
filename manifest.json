@@ -1,9 +1,0 @@
-{
-  "name": "Typing Test PWA",
-  "short_name": "Typing Test",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#f5f5dc",
-  "theme_color": "#007bff",
-  "icons": []
-}
