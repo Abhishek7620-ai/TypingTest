@@ -1047,9 +1047,4 @@ function passageNumber() {
 
 
 
-// Add an event listener for the contextmenu event
-document.addEventListener('contextmenu', function(event) {
-    // Prevent the default behavior of the context menu
-    event.preventDefault();
-});
-);
+
