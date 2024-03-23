@@ -1033,12 +1033,12 @@ function disableRightClick(event) {
 }
 
 // Add event listener to document for right-click event
-document.addEventListener('contextmenu', disableRightClick);
+// document.addEventListener('contextmenu', disableRightClick);
 
-function logOut(){
-  localStorage.removeItem('token');
-  location.reload();
-}
+// function logOut(){
+//   localStorage.removeItem('token');
+//   location.reload();
+// }
 
 document.addEventListener("DOMContentLoaded", function() {
   var inputElement = document.getElementById("textInput");
