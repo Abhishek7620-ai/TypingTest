@@ -1,3 +1,4 @@
+console.log(localStorage.getItem('userData'));
 const passages = {
   "Passage 1": passage1,
   "Passage 2": passage2,
@@ -439,7 +440,6 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
           
           // Omission of word
           errorCount++;
-          console.log(errorCount)
 
           if (screenWords.slice(screenIndex + 1).join(" ").includes(userWords[userIndex])) {
               screenIndex++;
@@ -938,30 +938,82 @@ function validateSignupForm() {
 }
 
 
-// script.js
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-  event.preventDefault();
 
-  const formData = new FormData(this);
-  const formDataJson = {};
-  formData.forEach((value, key) => {
-    formDataJson[key] = value;
-  });
 
-  sendDataToGoogleSheets(formDataJson);
-});
+function hideSignUp(){
+  document.getElementById("signupForUser").style.display='none';
+  document.getElementById("displayStudentName").textContent=formDataJson[signup_username];
+  
+}
+function hideCompareScreen(){
+document.getElementById("comparescreen").style.display='none';
+}
 
-async function sendDataToGoogleSheets(formData) {
-  try {
-    const response = await axios.post(
-      'https://script.google.com/macros/s/AKfycbwh1QwPiZgPF6csBQ_0juYYJ7QAZTdXYplRRN08RZKL0zI1xE0hRfvUNFe2fRbRKDOspg/exec', // Replace with your Google Apps Script web app URL
-      formData
-    );
-    console.log('Form submitted successfully:', response.data);
-    alert('Form submitted successfully!');
-    // Clear form fields if needed
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    alert('An error occurred while submitting the form.');
+function handleSignup() {
+  var form = document.getElementById('signupForm');
+  var formData = {};
+
+  for (var i = 0; i < form.elements.length; i++) {
+      var element = form.elements[i];
+      if (element.name && element.type !== 'button') {
+          formData[element.name] = element.value;
+      }
+  }
+
+  // Convert form data object to a JSON string
+  var formDataString = JSON.stringify(formData);
+
+  // Store the form data in local storage
+  localStorage.setItem('userData', formDataString);
+
+  // Optionally, you can perform additional actions after signup, such as redirecting to a dashboard
+}
+
+// Function to handle login form submission
+function handleLogin() {
+  var form = document.getElementById('loginForm');
+    var email = form.email.value;
+    var password = form.password.value;
+
+    // Your login verification logic here
+    // For demonstration purposes, alerting the user with the entered email and password
+    if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
+    }
+
+  // Retrieve stored user data from local storage
+  var storedUserDataString = localStorage.getItem('userData');
+
+  if (storedUserDataString) {
+      var storedUserData = JSON.parse(storedUserDataString);
+
+      // Check if email and password match stored user data
+      if (email === storedUserData.email && password == storedUserData.password) {
+          alert('Login successful!'); // You can replace this with actual login actions
+          document.getElementById("loginForUser").style.display = "none";
+          document.getElementById("displayStudentName").textContent = storedUserData.fullname;
+      } else {
+          alert('Invalid email or password.'); // You can replace this with appropriate error handling
+      }
+  } else {
+      alert('No user data found. Please sign up.'); // You can replace this with appropriate error handling
   }
 }
+function showLogin(){
+  document.getElementById("signupForUser").style.display ="none";
+  document.getElementById("loginForUser").style.display ="block";
+
+}
+function showSignUp(){
+  document.getElementById("loginForUser").style.display ="none";
+  document.getElementById("signupForUser").style.display ="block";
+
+}
+
+function disableRightClick(event) {
+  event.preventDefault();
+}
+
+// Add event listener to document for right-click event
+document.addEventListener('contextmenu', disableRightClick);

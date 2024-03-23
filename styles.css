@@ -566,7 +566,7 @@ width: 5%; /* Adjust the width as needed */
 
 #signupForUser {
 
-  display: block;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -628,5 +628,68 @@ input[type="submit"]:hover {
   text-align: center;
 }
 #maincontainer{
-  display:none;
+  display:bock;
+}
+
+.container3 {
+  width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container3 h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #0056b3;
+}
+
+.form-group .signup-button {
+  margin-top: 10px;
+  text-align: center;
+}
+#loginForUser{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; /* Adjust as needed */
+  height: 100%; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
