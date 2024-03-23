@@ -995,11 +995,26 @@ function handleLogin() {
           alert('Login successful!'); // You can replace this with actual login actions
           document.getElementById("loginForUser").style.display = "none";
           document.getElementById("displayStudentName").textContent = storedUserData.fullname;
+          document.getElementById("maincontainer").style.display = 'block';
+          var token = "random_generated_token"; // Generate a token upon successful login
+          localStorage.setItem('token', token);
+          
       } else {
           alert('Invalid email or password.'); // You can replace this with appropriate error handling
       }
   } else {
       alert('No user data found. Please sign up.'); // You can replace this with appropriate error handling
+  }
+}
+function checkLoggedIn() {
+  // Retrieve the token from localStorage
+  var token = localStorage.getItem('token');
+
+  // Check if the token exists
+  if (token) {
+      // Token exists, user is logged in, redirect to dashboard or desired page
+      document.getElementById("loginForUser").style.display = "none";
+      document.getElementById("maincontainer").style.display = "block";
   }
 }
 function showLogin(){
@@ -1019,3 +1034,20 @@ function disableRightClick(event) {
 
 // Add event listener to document for right-click event
 document.addEventListener('contextmenu', disableRightClick);
+
+function logOut(){
+  localStorage.removeItem('token');
+  location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var inputElement = document.getElementById("textInput");
+
+  inputElement.addEventListener("keydown", function(event) {
+    // Check if the backspace key is pressed and if multiple characters are selected
+    if (event.key === "Backspace" && inputElement.selectionStart !== inputElement.selectionEnd) {
+      // Prevent the default behavior of the backspace key
+      event.preventDefault();
+    }
+  });
+});

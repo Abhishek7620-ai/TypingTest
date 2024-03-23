@@ -628,7 +628,7 @@ input[type="submit"]:hover {
   text-align: center;
 }
 #maincontainer{
-  display:bock;
+  display:none;
 }
 
 .container3 {
@@ -692,4 +692,11 @@ input[type="submit"]:hover {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+textarea {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard syntax */
 }
