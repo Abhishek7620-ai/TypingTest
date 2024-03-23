@@ -1015,6 +1015,8 @@ function checkLoggedIn() {
       // Token exists, user is logged in, redirect to dashboard or desired page
       document.getElementById("loginForUser").style.display = "none";
       document.getElementById("maincontainer").style.display = "block";
+      document.getElementById("displayStudentName").textContent = JSON.parse(localStorage.getItem('userData')).fullname;
+      console.log('not found')
   }
 }
 function showLogin(){
@@ -1035,10 +1037,10 @@ function disableRightClick(event) {
 // Add event listener to document for right-click event
 // document.addEventListener('contextmenu', disableRightClick);
 
-// function logOut(){
-//   localStorage.removeItem('token');
-//   location.reload();
-// }
+ function logOut(){
+   localStorage.removeItem('token');
+  location.reload();
+ }
 
 document.addEventListener("DOMContentLoaded", function() {
   var inputElement = document.getElementById("textInput");
