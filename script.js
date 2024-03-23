@@ -933,6 +933,8 @@ function validateSignupForm() {
   }
 
   // You can add more complex validation here if needed
+  handleSignup();
+   showLogin();
 
   return true;
 }
