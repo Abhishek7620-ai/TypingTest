@@ -1,127 +1,112 @@
 /* Global styles */
 body {
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #ff8c69, #ff6b6b); /* Gradient background */
+}
+  
+  
+/* Resetting default browser styles */
+* {
     margin: 0;
     padding: 0;
-  /* background-image: url(bg.jpg); Light gray background */
-  background-color: #f5f5dc;
+    box-sizing: border-box;
+}
 
-    color: #333; /* Dark text color */
-  }
-  
-  
-  .navbar {
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color:#2ecc71;
+    color: black;
+    font-family: Arial, sans-serif;
+    border-radius:35px;
+    max-height: 70px;
+}
+
+/* Student Name and Passage Info */
+.student-name,
+.passage-info {
+    margin-right: 20px;
+}
+
+
+/* Passage selectors */
+/* Your CSS styles for the passage selector */
+.passage-selector {
+  margin-bottom: 20px;
+  display:flex;
+}
+
+.passage-selector-select {
+  border-radius: 20px;
+  width: 100px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius:20px;
+}
+
+
+
+
+/* Time selectors */
+.time-selector {
+  margin-right: 20px;
+}
+
+#timeInput {
+height:30px;
+}
+
+/* Font controls */
+.font-controls {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-bottom: 2px solid #ccc;
-    font-family: Arial, sans-serif;
 }
 
-.passage-info {
-    flex-grow: 1;
-    margin-right: 20px;
-}
-
-.passage-selector,
-.time-selector,
-.time-info,
-.font-controls {
-    margin-right: 20px;
-}
-
-.passage-selector select,
-.time-selector input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.passage-selector select:focus,
-.time-selector input:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-#startTimerButton,
-#resetTimeButton,
-#decreaseFontSize,
-#increaseFontSize,
-#closeButton {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
+/* Adjust Font Size buttons */
+.font-controls button {
+    margin-left: 5px;
+    padding: 8px 15px;
     border: none;
-    border-radius: 5px;
+    background-color: #4caf50;
+    color: #fff;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-#startTimerButton:hover,
-#resetTimeButton:hover,
-#decreaseFontSize:hover,
-#increaseFontSize:hover,
-#closeButton:hover {
-    background-color: #0056b3;
+.font-controls button:hover {
+    background-color: #45a049;
 }
 
-#startTimerButton:focus,
-#resetTimeButton:focus,
-#decreaseFontSize:focus,
-#increaseFontSize:focus,
-#closeButton:focus {
-    outline: none;
+/* Timer info */
+.time-info {
+    display: flex;
+    align-items: center;
 }
 
-#screenTimer {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 5px;
+/* Timer reset button */
+#resetTimeButton {
+    margin-left: 15px;
+    padding: 8px 15px;
+    border: none;
+    background-color: #f44336;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-
-
-  
-  
-  
-
-/* Custom select styles */
-.select-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 150px;
+#resetTimeButton:hover {
+    background-color: #d32f2f;
 }
 
-.select-wrapper select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
-
-.select-wrapper select:focus {
-  outline: none;
-  border-color: #3498db;
-}
-
-.select-arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #666;
-}
-
-  
   /* Main container1 styles */
+  #maincontainer{display:none;}
   .container1 {
     max-width: 1200px;
     margin: 10px 20px; /* Center the container */
@@ -565,135 +550,162 @@ width: 5%; /* Adjust the width as needed */
 }
 
 
+/* Signup form container */
+/* Signup form container */
 #signupForUser {
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%; /* Adjust as needed */
-  height: 100%; /* Adjust as needed */
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-form {
   max-width: 400px;
-  margin: 0 auto;
+  width: 90%;
+  margin: 50px auto;
   padding: 20px;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* White background */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Form title */
+.form-title {
+  margin-bottom: 20px;
+  color: #333; /* Dark Gray text color */
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Form inputs */
 label {
   font-weight: bold;
+  margin-bottom: 5px;
+  color: #555; /* Dark Gray text color */
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="date"],
-input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
+input[type="date"] {
+  width: calc(100% - 24px);
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc; /* Light Gray border */
+  border-radius: 25px; /* Rounded corners */
+  transition: border-color 0.3s;
 }
 
-input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+  border-color: #ff6b6b; /* Red border color on focus */
+}
+
+/* Signup button */
+input[type="button"] {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #ff6b6b; /* Red background color */
+  color: #fff; /* White text color */
   border: none;
+  border-radius: 25px; /* Rounded corners */
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
+input[type="button"]:hover {
+  background-color: #ff8c69; /* Lighter Red on hover */
 }
 
+/* Error message */
 .error {
-  color: red;
-  font-size: 0.8em;
-  margin-top: 5px;
-}
-
-.form-title {
+  color: #ff0000; /* Red error message color */
+  margin-top: 10px;
+  font-size: 14px;
   text-align: center;
 }
-#maincontainer{
-  display:none;
-}
-
-.container3 {
+/* Form container */
+.containe3 {
   width: 350px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 50px auto; /* Center the form vertically */
+  padding: 30px;
+  background-color: #f9f9f9; /* Light gray background */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.container3 h1 {
+/* Form title */
+.containe3 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #333;
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Increased letter spacing */
 }
 
+/* Form group */
 .form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+/* Labels */
+label {
   display: block;
-  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
 }
 
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
+/* Input fields */
 
-.form-group button {
+
+
+
+/* Login button */
+button[type="button"] {
   width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  background-color: #007bff;
+  padding: 12px;
+  background-color: #007bff; /* Blue button background color */
   color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+  text-transform: uppercase; /* Uppercase text */
+  border-radius: 20px;
 }
 
-.form-group button:hover {
-  background-color: #0056b3;
+button[type="button"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-.form-group .signup-button {
+/* Signup button */
+.signup-button button[type="button"] {
+  background-color: #28a745; /* Green button background color */
+}
+
+.signup-button button[type="button"]:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Error message */
+.error {
+  color: red;
   margin-top: 10px;
+  font-size: 14px;
   text-align: center;
 }
-#loginForUser{
-  display: block;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%; /* Adjust as needed */
-  height: 100%; /* Adjust as needed */
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+/* Additional enhancements */
+.containe3 {
+  transition: transform 0.3s ease-in-out; /* Smooth scale transition */
 }
+
+.containe3:hover {
+  transform: scale(1.05); /* Scale up on hover */
+}
+
 
 textarea {
   -webkit-user-select: none; /* Safari */

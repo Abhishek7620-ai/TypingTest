@@ -1,6 +1,6 @@
 console.log(localStorage.getItem('userData'));
 const passages = {
-  "Passage 1": passage1,
+  "English Passage 1 (Easy)": englishPassage1,
   "Passage 2": passage2,
   "Passage 3": passage3,
   "Passage 4": passage4,
@@ -59,7 +59,7 @@ const passages = {
   "Passage 57": passage57,
   "Passage 58": passage58,
   "Passage 59": passage59,
-  "Passage 60": passage60,
+  "Marathi Passage 1 (Easy)": marathiPassage1Easy,
   "Passage 61": passage61,
   "Passage 62": passage62,
   "Passage 63": passage63,
@@ -232,7 +232,7 @@ function isPass(parameter){
 }
 
 // Initialize upper box text
-upperBoxText.textContent = passage1;
+upperBoxText.textContent = englishPassage1;
 displayPassage.textContent = passageNumber();
 let sampleContent = upperBoxText.innerText.trim().split(' ');
 totalWordsCount.innerText = `${sampleContent.length}`;
@@ -551,7 +551,7 @@ function resetAllSelects(){
 
 function passageNumber() {
   const passages = {
-    [passage1]: "Passage 1",
+    [englishPassage1]: "English Passage 1 (Easy)",
     [passage2]: "Passage 2",
     [passage3]: "Passage 3",
     [passage4]: "Passage 4",
@@ -610,7 +610,7 @@ function passageNumber() {
     [passage57]: "Passage 57",
     [passage58]: "Passage 58",
     [passage59]: "Passage 59",
-    [passage60]: "Passage 60",
+    [marathiPassage1Easy]: "Marathi Passage 1 (Easy)",
     [passage61]: "Passage 61",
     [passage62]: "Passage 62",
     [passage63]: "Passage 63",
@@ -1052,4 +1052,50 @@ document.addEventListener("DOMContentLoaded", function() {
       event.preventDefault();
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  var languageSelect = document.getElementById('language-select');
+  var difficultySelect = document.getElementById('difficulty-select');
+  var passageSelect = document.getElementById('passage-select');
+
+  // Define passages for each language and difficulty level
+  var passages = {
+    'English': {
+      'Easy': ['English Passage 1 (Easy)', 'Passage 2', 'Passage 3 (Easy)'],
+      'Medium': ['Passage 1 (Medium)', 'Passage 2 (Medium)', 'Passage 3 (Medium)'],
+      'Hard': ['Passage 1 (Hard)', 'Passage 2 (Hard)', 'Passage 3 (Hard)']
+    },
+    'Marathi': {
+      'Easy': ['Marathi Passage 1 (Easy)', 'Marathi Passage 2 (Easy)', 'Marathi Passage 3 (Easy)'],
+      'Medium': ['Marathi Passage 1 (Medium)', 'Marathi Passage 2 (Medium)', 'Marathi Passage 3 (Medium)'],
+      'Hard': ['Marathi Passage 1 (Hard)', 'Marathi Passage 2 (Hard)', 'Marathi Passage 3 (Hard)']
+    }
+  };
+
+  // Function to populate passages based on selected language and difficulty
+  function populatePassages() {
+    var selectedLanguage = languageSelect.value;
+    var selectedDifficulty = difficultySelect.value;
+
+    // Clear existing options
+    passageSelect.innerHTML = '';
+
+    // Populate options for the passage select based on the selected language and difficulty
+    passages[selectedLanguage][selectedDifficulty].forEach(function(passage) {
+      var optionElement = document.createElement('option');
+      optionElement.textContent = passage;
+      optionElement.value = passage;
+      passageSelect.appendChild(optionElement);
+    });
+  }
+
+  // Add event listener to language select
+  languageSelect.addEventListener('change', populatePassages);
+
+  // Add event listener to difficulty select
+  difficultySelect.addEventListener('change', populatePassages);
+
+  // Initial population of passages based on default selections
+  populatePassages();
 });

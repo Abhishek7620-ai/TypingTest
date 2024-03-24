@@ -7,6 +7,16 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="manifest" href="/manifest.json">
 </head>
+<body>
+  <div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typin - Signup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body onload="checkLoggedIn()">
   <div id="loginForUser">
     <div class="containe3">
@@ -75,31 +85,22 @@
     <span class="student-name">Student Name:<span id="displayStudentName">StudentName</span></span>
     <span class="passage-info">Passage Name: <span id="displaypassage">Passage 1</span></span>
     
-    <span class="passage-selector">
-        <select id="passageDropdown" onchange="changePassage(value)">
-            <option value="Easy Level">Easy</option>
-            <option value="Passage 1">Passage 1</option>
-            <option value="Passage 2">Passage 2</option>
-            <!-- Add more options as needed -->
-        </select>
-    </span>
     
     <span class="passage-selector">
-        <select id="passageDropdownHard" onchange="if(value === 'Passage 60' ){changePassage(value);convertKeyBoardToMarathi()}else{changePassage(value);convertKeyboardToEnglish()};resetAllSelects()">
-            <option value="Hard Level">Hard</option>
-            <option value="Passage 51">Passage 51</option>
-            <option value="Passage 60">Passage 60</option>
-            <!-- Add more options as needed -->
-        </select>
-    </span>
+      <select class="passage-selector-select" id="language-select" onchange = "if(value==='Marathi'){convertKeyBoardToMarathi()}else{convertKeyboardToEnglish()}">
+        <option value="English" >English</option>
+        <option value="Marathi" >Marathi</option>
+      </select>
     
-    <span class="passage-selector">
-        <select id="passageDropdownMedium" onchange="changePassage(value)">
-            <option value="Medium Level">Medium</option>
-            <option value="Passage 1">Passage 1</option>
-            <option value="Passage 2">Passage 2</option>
-            <!-- Add more options as needed -->
-        </select>
+      <select class="passage-selector-select" id="difficulty-select">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    
+      <select class="passage-selector-select" id="passage-select" onclick="changePassage( value)">
+        <!-- Options will be dynamically populated based on the selection in the first two selects -->
+      </select>
     </span>
     
     <span class="time-selector">
@@ -142,7 +143,7 @@
         <li>Error Counts: <span id="errorcount">0</span></li>
       </ul>
     </div>
-    <button id="submitBtn" onclick="openPopup();disableInput()"  >Submit</button>
+    <button id="submitBtn" onclick="stopTimer();openPopup();disableInput()"  >Submit</button>
   </div>
 </div>
 </div>
