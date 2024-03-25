@@ -221,6 +221,7 @@ function convertKeyBoardToMarathi() {
 
 function convertKeyboardToEnglish() {
   inputElement.removeEventListener('keypress', replaceWithMarathi);
+  inputElement.removeEventListener('keypress', handleInputAndKeypress);
   inputElement.removeEventListener('input', handleInputAndKeypress);
 }
 
