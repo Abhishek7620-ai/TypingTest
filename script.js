@@ -4,6 +4,7 @@ const passages = {};
 for (let i = 1; i <= 150; i++) {
     passages[`English Passage ${i}`] = englishParagraphs[i];
 }
+passages[`Marathi Passage 1 (Easy)`] = marathiPassage1Easy;
 
 console.log(passages);
 
@@ -88,7 +89,7 @@ function isPass(parameter){
 }
 
 // Initialize upper box text
-upperBoxText.textContent = englishPassage1;
+upperBoxText.textContent = englishParagraphs[1];
 displayPassage.textContent = passageNumber();
 let sampleContent = upperBoxText.innerText.trim().split(' ');
 totalWordsCount.innerText = `${sampleContent.length}`;
@@ -178,7 +179,7 @@ function handleInputAndKeypress(event) {
   if (currentCharacterCount < previousCharacterCount) {
 
       backSpaceCount.textContent = `${parseInt(backSpaceCount.textContent) + (previousCharacterCount - currentCharacterCount)}`;
-      resultBackSpaceCount = backSpaceCount.textContent;
+      resultBackSpaceCount = parseInt(backSpaceCount.textContent);
   }
 
   correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
@@ -297,6 +298,8 @@ function showPopup() {
   document.getElementById("nwpm").innerText = ((correctWords2000 / elapsedTimeInSeconds) * 60).toFixed(2);
   let accuracy = (((correctWords2000 / elapsedTimeInSeconds) * 60) / ((totalWords2000 / elapsedTimeInSeconds) * 60)) * 100;
   document.getElementById("accuracy").innerText = accuracy.toFixed(2);
+  document.getElementById("backspaceCount1").innerText = resultBackSpaceCount;
+
 document.getElementById('result1').style.display = 'block';
 }
 function hideResult2() {
@@ -348,7 +351,7 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
           correctKeystrokes += screenWords[screenIndex].length;
           correctWords++;
           arrayForComparingPassage.push(`<span style='color:green;font-weight:bold'>${screenWords[screenIndex]}</span>`)
-          arrayForComparingPassage2[userIndex] =`<span style='color:green;font-weight:bold'>${screenWords[screenIndex]}</span>`
+          arrayForComparingPassage2[screenIndex] =`<span style='color:green;font-weight:bold'>${screenWords[screenIndex]}</span>`
       } else {
           // Check for different types of error
           arrayForComparingPassage.push(`<span style='color:red'>${ userWords[userIndex]}</span>`)
@@ -473,6 +476,7 @@ function passageNumber() {
   for (let i = 1; i <= 150; i++) {
     passages[englishParagraphs[i]] = `English Passage ${i}`
 }
+passages[ marathiPassage1Easy] = `Marathi Passage 1 (Easy)`;
 
   return passages[upperBoxText.textContent] || "Passage not found!";
 }
@@ -590,6 +594,32 @@ const marathiKeyboardMapping = {
   'x': 'ग',
   'y': 'ल',
   'z': '्र',
+  'A': 'आ',
+  'B': 'ठ',
+  'C': 'ब',
+  'D': 'क',
+  'E': 'म',
+  'F': 'थ',
+  'G': 'ळ',
+  'H': 'भ',
+  'I': 'प',
+  'J': 'श',
+  'K': 'ज',
+  'L': 'स',
+  'M': 'ड',
+  'N': 'छ',
+  'O': 'व',
+  'P': 'च',
+  'Q': 'फ',
+  'R': 'त',
+  'S': 'ऐ',
+  'T': 'ज',
+  'U': 'ण',
+  'V': 'ट',
+  'W': 'ए',
+  'X': 'घ',
+  'Y': 'ळ',
+  'Z': 'र',
 };
 
 
@@ -598,8 +628,12 @@ const marathiKeyboardMapping = {
 
 
 
+
+
+
+
 function replaceWithMarathi(event) {
-  const typedKey = event.key.toLowerCase(); // Convert to lowercase for case insensitivity
+  const typedKey = event.key;
   const marathiEquivalent = marathiKeyboardMapping[typedKey];
   
   if (marathiEquivalent) {
