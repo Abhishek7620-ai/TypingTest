@@ -1,12 +1,14 @@
-console.log(localStorage.getItem('userData'));
+let displaydTimeOnScreen ="";
 const passages = {};
 
-for (let i = 1; i <= 150; i++) {
-    passages[`English Passage ${i}`] = englishParagraphs[i];
+for (let i = 0; i <= 150; i++) {
+    passages[`English Passage ${i+1}`] = englishParagraphs[i];
 }
 passages[`Marathi Passage 1 (Easy)`] = marathiPassage1Easy;
+for (let i = 0; i <= 150; i++) {
+  passages[`Marathi Passage ${i+1}`] = marathiParagraphs[i];
+}
 
-console.log(passages);
 
 const minFontSize = 10; 
 const maxFontSize = 30; 
@@ -102,8 +104,8 @@ let currentCharacterCount = 0;
 
 
 
-// Define handleInputAndkeydown function
-function handleInputAndkeydown(event) {
+// Define handleInputAndKeypress function
+function handleInputAndKeypress(event) {
   if (!startTime) {
       startTime = new Date();
       clearInterval(timerInterval); // Clear any existing interval
@@ -156,7 +158,7 @@ function handleInputAndkeydown(event) {
   }
 }
 
-function handleInputAndkeydown(event) {
+function handleInputAndKeypress(event) {
   if (!startTime) {
       startTime = new Date();
       clearInterval(timerInterval); // Clear any existing interval
@@ -211,19 +213,19 @@ function handleInputAndkeydown(event) {
 // Attach event listeners to inputElement
 inputElement.addEventListener('input', function(event) {
   if (event.target.value !== currentValue) {
-      handleInputAndkeydown(event);
+      handleInputAndKeypress(event);
   }
 });
 function convertKeyBoardToMarathi() {
-  inputElement.addEventListener('keydown', replaceWithMarathi);
-  inputElement.addEventListener('keydown', handleInputAndkeydown);
-  inputElement.addEventListener('input', handleInputAndkeydown);
+  inputElement.addEventListener('keypress', replaceWithMarathi);
+  inputElement.addEventListener('keypress', handleInputAndKeypress);
+  inputElement.addEventListener('input', handleInputAndKeypress);
 }
 
 function convertKeyboardToEnglish() {
-  inputElement.removeEventListener('keydown', replaceWithMarathi);
-  inputElement.removeEventListener('keydown', handleInputAndkeydown);
-  inputElement.removeEventListener('input', handleInputAndkeydown);
+  inputElement.removeEventListener('keypress', replaceWithMarathi);
+  inputElement.removeEventListener('keypress', handleInputAndKeypress);
+  inputElement.removeEventListener('input', handleInputAndKeypress);
 }
 
 
@@ -244,11 +246,11 @@ inputElement.addEventListener('keyup', function(event) {
         }
     }
 });
-let CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1]
+let CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1];
 function updateTimer() {
     const currentTime = new Date();
     elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000);
-    const remainingTimeInSeconds = CurrentDisplaySeconds - elapsedTimeInSeconds; // 10 minutes = 600 seconds
+    const remainingTimeInSeconds = CurrentDisplaySeconds - elapsedTimeInSeconds; 
     const minutes = Math.floor(remainingTimeInSeconds / 60);
     const seconds = remainingTimeInSeconds % 60;
     timerDisplay.innerHTML = `${minutes}:${("0"+seconds).slice(-2)}`;
@@ -265,7 +267,8 @@ function resetTimer() {
     clearInterval(timerInterval); // Clear any existing interval
     startTime = false;
     resetAllData();
-    timerDisplay.textContent = "10:00"; // Reset the timer display to initial value
+    timerDisplay.textContent = '10:00'; // Reset the timer display to initial value
+    CurrentDisplaySeconds = 600;
 }
 
 
@@ -293,11 +296,11 @@ function showPopup() {
   document.getElementById("correctkeystrokesPercentfull").innerText = correctkeystrokesPercent2000;
   document.getElementById("resultofstudentfull").innerText = passFailValue;
 
-  document.getElementById("cpm").innerText = ((totalKeyStrokes2000 / elapsedTimeInSeconds) * 60).toFixed(2);
-  document.getElementById("gwpm").innerText = ((totalWords2000 / elapsedTimeInSeconds) * 60).toFixed(2);
-  document.getElementById("nwpm").innerText = ((correctWords2000 / elapsedTimeInSeconds) * 60).toFixed(2);
+  elapsedTimeInSeconds?(document.getElementById("cpm").innerText = ((totalKeyStrokes2000 / elapsedTimeInSeconds) * 60).toFixed(2)):(document.getElementById("cpm").innerText=0);
+  elapsedTimeInSeconds?(document.getElementById("gwpm").innerText = ((totalWords2000 / elapsedTimeInSeconds) * 60).toFixed(2)):(document.getElementById("gwpm").innerText=0);
+  elapsedTimeInSeconds?(document.getElementById("nwpm").innerText = ((correctWords2000 / elapsedTimeInSeconds) * 60).toFixed(2)):(document.getElementById("nwpm").innerText=0);
   let accuracy = (((correctWords2000 / elapsedTimeInSeconds) * 60) / ((totalWords2000 / elapsedTimeInSeconds) * 60)) * 100;
-  document.getElementById("accuracy").innerText = accuracy.toFixed(2);
+  elapsedTimeInSeconds?(document.getElementById("accuracy").innerText = accuracy.toFixed(2)):(document.getElementById("accuracy").innerText=0);
   document.getElementById("backspaceCount1").innerText = resultBackSpaceCount;
 
 document.getElementById('result1').style.display = 'block';
@@ -454,7 +457,8 @@ function updateTimerforSelect() {
   }
   
   // Update the timer display with the new time
-  document.getElementById("screenTimer").textContent = `${newMinutes ? newMinutes : "00"}:${newSecond ? ("0"+newSecond).slice(-2) : "00"}`;
+  displaydTimeOnScreen = `${newMinutes ? newMinutes : "00"}:${newSecond ? ("0"+newSecond).slice(-2) : "00"}`
+  document.getElementById("screenTimer").textContent = displaydTimeOnScreen;
   CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1]
   document.getElementById("timeInput").value = ""
 }
@@ -473,10 +477,13 @@ function resetAllSelects(){
 
 
 function passageNumber() {
-  for (let i = 1; i <= 150; i++) {
-    passages[englishParagraphs[i]] = `English Passage ${i}`
+  for (let i = 0; i <= 150; i++) {
+    passages[englishParagraphs[i]] = `English Passage ${i+1}`
 }
 passages[ marathiPassage1Easy] = `Marathi Passage 1 (Easy)`;
+for (let i = 0; i <= 150; i++) {
+  passages[marathiParagraphs[i+1]] = `Marathi Passage ${i+1}`
+}
 
   return passages[upperBoxText.textContent] || "Passage not found!";
 }
@@ -498,139 +505,7 @@ function detectLanguage() {
   return navigator.language;
 }
 
-const marathiKeyboardMapping = {
-  '`': '़',
-  '1': '१',
-  '2': '२',
-  '3': '३',
-  '4': '४',
-  '5': '५',
-  '6': '६',
-  '7': '७',
-  '8': '८',
-  '9': '९',
-  '0': '०',
-  '-': 'ञ',
-  '=': 'ृ',
-  '[': 'ख्‍',
-  ']': ',',
-  '\\': '.',
-  ';': 'य',
-  "'": 'श्‍',
-  ',': 'ए',
-  '.': 'ण्‍',
-  '/': 'ध्‍',
-  ' ': ' ',
-  '~': 'द्य',
-  '!': '।',
-  '@': '/',
-  '#': ':',
-  '$': 'रऱ्‍',
-  '%': '-',
-  '^': '"',
-  '&': "'",
-  '*': 'द्ध',
-  '(': 'त्र',
-  ')': 'ऋ',
-  '_': '.',
-  '+': '्',
-  '{': 'क्ष्‍',
-  '}': 'द्व',
-  '|': '',
-  ':': 'रू',
-  '"': 'ष्‍',
-  '<': 'ढ',
-  '>': 'झ',
-  '?': 'घ्‍',
-  'A': 'ा',
-  'B': 'ठ',
-  'C': 'ब्‍',
-  'D': 'क्‍',
-  'E': 'म्‍',
-  'F': 'थ्‍',
-  'G': 'ळ',
-  'H': 'भ्‍',
-  'I': 'प्‍',
-  'J': 'श्र',
-  'K': 'ज्ञ',
-  'L': 'स्‍',
-  'M': 'ड',
-  'N': 'छ',
-  'O': 'व्‍',
-  'P': 'च्‍',
-  'Q': 'फ',
-  'R': 'त्‍',
-  'S': 'ै',
-  'T': 'ज्‍',
-  'U': 'न्‍',
-  'V': 'ट',
-  'W': 'ॅ',
-  'X': 'ग्‍',
-  'Y': 'ल्‍',
-  'Z': 'र्‍',
-  'a': 'ं',
-  'b': 'इ',
-  'c': 'ब',
-  'd': 'क',
-  'e': 'म',
-  'f': 'ि',
-  'g': 'ह',
-  'h': 'ी',
-  'i': 'प',
-  'j': 'र',
-  'k': 'ा',
-  'l': 'स',
-  'm': 'उ',
-  'n': 'द',
-  'o': 'व',
-  'p': 'च',
-  'q': 'ु',
-  'r': 'त',
-  's': 'े',
-  't': 'ज',
-  'u': 'न',
-  'v': 'अ',
-  'w': 'ू',
-  'x': 'ग',
-  'y': 'ल',
-  'z': '्र',
-  'A': 'आ',
-  'B': 'ठ',
-  'C': 'ब',
-  'D': 'क',
-  'E': 'म',
-  'F': 'थ',
-  'G': 'ळ',
-  'H': 'भ',
-  'I': 'प',
-  'J': 'श',
-  'K': 'ज',
-  'L': 'स',
-  'M': 'ड',
-  'N': 'छ',
-  'O': 'व',
-  'P': 'च',
-  'Q': 'फ',
-  'R': 'त',
-  'S': 'ऐ',
-  'T': 'ज',
-  'U': 'ण',
-  'V': 'ट',
-  'W': 'ए',
-  'X': 'घ',
-  'Y': 'ळ',
-  'Z': 'र',
-};
-
-
-
-
-
-
-
-
-
-
+const marathiKeyboardMapping={'`':'़','1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९','0':'०','-':'ञ','=':'ृ','[':'ख्‍',']':',','\\':'.',';':'य',"'":'श्‍',',':'ए','.':'ण्‍','/':'ध्‍',' ':'','~':'द्य','!':'।','@':'/','#':':','$':'रऱ्‍','%':'-','^':'"','&':"'",'*':'द्ध','(': 'त्र',')': 'ऋ','_': '.','+': '्','{': 'क्ष्‍','}': 'द्व','|': '','': 'रू','"': 'ष्‍','<': 'ढ','>': 'झ','?': 'घ्‍','A': 'ा','B': 'ठ','C': 'ब्‍','D': 'क्‍','E': 'म्‍','F': 'थ्‍','G': 'ळ','H': 'भ्‍','I': 'प्‍','J': 'श्र','K': 'ज्ञ','L': 'स्‍','M': 'ड','N': 'छ','O': 'व्‍','P': 'च्‍','Q': 'फ','R': 'त्‍','S': 'ै','T': 'ज्‍','U': 'न्‍','V': 'ट','W': 'ॅ','X': 'ग्‍','Y': 'ल्‍','Z': 'र्‍','a': 'ं','b': 'इ','c': 'ब','d': 'क','e': 'म','f': 'ि','g': 'ह','h': 'ी','i': 'प','j': 'र','k': 'ा','l': 'स','m': 'उ','n': 'द','o': 'व','p': 'च','q': 'ु','r': 'त','s': 'े','t': 'ज','u': 'न','v': 'अ','w': 'ू','x': 'ग','y': 'ल','z': '्र','A': 'आ','B': 'ठ','C': 'ब','D': 'क','E': 'म','F': 'थ','G': 'ळ','H': 'भ','I': 'प','J': 'श','K': 'ज','L': 'स','M': 'ड','N': 'छ','O': 'व','P': 'च','Q': 'फ','R': 'त','S': 'ऐ','T': 'ज','U': 'ण','V': 'ट','W': 'ए','X': 'घ','Y': 'ळ','Z': 'र'}
 
 function replaceWithMarathi(event) {
   const typedKey = event.key;
@@ -654,20 +529,6 @@ function startTimerforButton() {
       clearInterval(timerInterval); // Clear any existing interval
       timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
   }
-}
-
-// script.js
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
-  });
 }
 
 // Get elements
@@ -817,7 +678,6 @@ function checkLoggedIn() {
       document.getElementById("loginForUser").style.display = "none";
       document.getElementById("maincontainer").style.display = "block";
       document.getElementById("displayStudentName").textContent = JSON.parse(localStorage.getItem('userData')).fullname;
-      console.log('not found')
   }
 }
 function showLogin(){
@@ -851,20 +711,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Define passages for each language and difficulty level
   const easyEnglishPassages = [];
+  const mediumEnglishPassages = [];
+  const hardEnglishPassages = [];
+  const easyMarathiPassages = [];
+  const mediumMarathiPassages = [];
+  const hardMarathiPassages = [];
 
 for (let i = 1; i <= 150; i++) {
     easyEnglishPassages.push(`English Passage ${i}`);
+    mediumEnglishPassages.push(`English Passage ${i}(Medium)`);
+    hardEnglishPassages.push(`English Passage ${i}(Hard)`);
+    easyMarathiPassages.push(`Marathi Passage ${i}`);
+    mediumMarathiPassages.push(`Marathi Passage ${i}(Medium)`);
+    hardMarathiPassages.push(`Marathi Passage ${i}(Hard)`);
 }
   var passages = {
     'English': {
       'Easy': easyEnglishPassages,
-      'Medium': ['Passage 1 (Medium)', 'Passage 2 (Medium)', 'Passage 3 (Medium)'],
-      'Hard': ['Passage 1 (Hard)', 'Passage 2 (Hard)', 'Passage 3 (Hard)']
+      'Medium': mediumEnglishPassages,
+      'Hard': hardEnglishPassages
     },
     'Marathi': {
-      'Easy': ['Marathi Passage 1 (Easy)', 'Marathi Passage 2 (Easy)', 'Marathi Passage 3 (Easy)'],
-      'Medium': ['Marathi Passage 1 (Medium)', 'Marathi Passage 2 (Medium)', 'Marathi Passage 3 (Medium)'],
-      'Hard': ['Marathi Passage 1 (Hard)', 'Marathi Passage 2 (Hard)', 'Marathi Passage 3 (Hard)']
+      'Easy': easyMarathiPassages,
+      'Medium': mediumMarathiPassages,
+      'Hard':hardMarathiPassages
     }
   };
 

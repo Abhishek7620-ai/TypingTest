@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Typing Test</title>
 <link rel="stylesheet" href="styles.css">
-<link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div>
@@ -24,12 +23,12 @@
     <form id="loginForm">
       <div class="form-group">
         <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" name="email" required>
+        <input type="email" id="loginEmail" name="email" autocomplete="email" required>
       </div>
       
       <div class="form-group">
         <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="password" required>
+        <input type="password" id="loginPassword" name="password" autocomplete="password" required>
       </div>
       
       <div class="form-group">
@@ -47,7 +46,7 @@
 <h2 class="form-title">Signup Form</h2>
 <form id="signupForm"  method="post" >
     <label for="signup_username">Username:</label>
-    <input type="text" id="signup_username" name="signup_username" required>
+    <input type="text" id="signup_username" name="signup_username" autocomplete="username" required>
     <label for="signup_password">Password:</label>
     <input type="password" id="signup_password" name="signup_password" required>
     <label for="confirm_password">Confirm Password:</label>
@@ -195,7 +194,7 @@
         </tr>
         <tr>
           <td>Correct Keystrokes % In First 2000 Keystrokes:</td>
-          <td id="correctkeystrokesPercent2000"><span>%</span></td>
+          <td ><span id="correctkeystrokesPercent2000"></span>%</td>
         </tr>
         <tr>
           <td>Result according to correct keystrokes in first 2000 keystrokes</td>
@@ -236,7 +235,7 @@
           </tr>
           <tr>
             <td>Correct Keystrokes % In Passage:</td>
-            <td id="correctkeystrokesPercentfull"><span>%</span></td>
+            <td ><span id="correctkeystrokesPercentfull"></span>%</td>
           </tr>
           <tr>
             <td>Result according to correct keystrokes in Passage</td>
@@ -274,7 +273,7 @@
             </tr>
             <tr>
               <td>Accuracy</td>
-              <td id="accuracy"><span>%</span></td>
+              <td ><span id="accuracy"></span>%</td>
             </tr>
             <tr>
               <td>Backspace Count</td>
@@ -293,24 +292,25 @@
   </div>
 </div>
 
-<body>
-  <div id ="comparescreen" class="container2">
-    
-      <div class="box2">
-        <h4 style = "text-align: center;">Actual Passage:</h4>
-          <p id="box1"></p>
-      </div>
-      
-      <div class="box2">
-        <h4 style = "text-align: center;">Typed Passage:</h4>
-          <p id="box2"></p>
-          <div>
-            <button onclick="showPopup()">Submit</button>
-            <button onclick="hideCompareScreen();enableInput()">Exit</button>
-          </div>
-      </div>
+
+<div id="comparescreen" class="container2">
+  <!-- Box 1: Actual Passage -->
+  <div class="box2">
+    <h4>Actual Passage:</h4>
+    <p id="box1"></p>
   </div>
-  <script src="functions.js"></script>
+
+  <!-- Box 2: Typed Passage -->
+  <div class="box2">
+    <h4>Typed Passage:</h4>
+    <p id="box2"></p>
+    <!-- Button Container -->
+    <div class="button-container">
+      <button onclick="showPopup();resetTimer()">Submit</button>
+      <button onclick="hideCompareScreen();enableInput()">Exit</button>
+    </div>
+  </div>
+</div>
 <script src="passages.js"></script>
 <script src="script.js"></script>
 
