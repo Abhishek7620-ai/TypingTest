@@ -102,8 +102,8 @@ let currentCharacterCount = 0;
 
 
 
-// Define handleInputAndKeypress function
-function handleInputAndKeypress(event) {
+// Define handleInputAndkeydown function
+function handleInputAndkeydown(event) {
   if (!startTime) {
       startTime = new Date();
       clearInterval(timerInterval); // Clear any existing interval
@@ -156,7 +156,7 @@ function handleInputAndKeypress(event) {
   }
 }
 
-function handleInputAndKeypress(event) {
+function handleInputAndkeydown(event) {
   if (!startTime) {
       startTime = new Date();
       clearInterval(timerInterval); // Clear any existing interval
@@ -211,19 +211,19 @@ function handleInputAndKeypress(event) {
 // Attach event listeners to inputElement
 inputElement.addEventListener('input', function(event) {
   if (event.target.value !== currentValue) {
-      handleInputAndKeypress(event);
+      handleInputAndkeydown(event);
   }
 });
 function convertKeyBoardToMarathi() {
-  inputElement.addEventListener('keypress', replaceWithMarathi);
-  inputElement.addEventListener('keypress', handleInputAndKeypress);
-  inputElement.addEventListener('input', handleInputAndKeypress);
+  inputElement.addEventListener('keydown', replaceWithMarathi);
+  inputElement.addEventListener('keydown', handleInputAndkeydown);
+  inputElement.addEventListener('input', handleInputAndkeydown);
 }
 
 function convertKeyboardToEnglish() {
-  inputElement.removeEventListener('keypress', replaceWithMarathi);
-  inputElement.removeEventListener('keypress', handleInputAndKeypress);
-  inputElement.removeEventListener('input', handleInputAndKeypress);
+  inputElement.removeEventListener('keydown', replaceWithMarathi);
+  inputElement.removeEventListener('keydown', handleInputAndkeydown);
+  inputElement.removeEventListener('input', handleInputAndkeydown);
 }
 
 
