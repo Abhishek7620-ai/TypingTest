@@ -87,7 +87,7 @@
     
     
     <span class="passage-selector">
-      <select class="passage-selector-select" id="language-select" onchange = "if(value==='Marathi'){convertKeyBoardToMarathi()}else{convertKeyboardToEnglish()}">
+      <select class="passage-selector-select" id="language-select" onchange = "if(value==='Marathi'){convertKeyBoardToMarathi();}else if(value === 'English'){convertKeyboardToEnglish()}">
         <option value="English" >English</option>
         <option value="Marathi" >Marathi</option>
       </select>
@@ -310,7 +310,7 @@
           </div>
       </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="functions.js"></script>
 <script src="passages.js"></script>
 <script src="script.js"></script>
 

@@ -1,156 +1,12 @@
 console.log(localStorage.getItem('userData'));
-const passages = {
-  "English Passage 1 (Easy)": englishPassage1,
-  "Passage 2": passage2,
-  "Passage 3": passage3,
-  "Passage 4": passage4,
-  "Passage 5": passage5,
-  "Passage 6": passage6,
-  "Passage 7": passage7,
-  "Passage 8": passage8,
-  "Passage 9": passage9,
-  "Passage 10": passage10,
-  "Passage 11": passage11,
-  "Passage 12": passage12,
-  "Passage 13": passage13,
-  "Passage 14": passage14,
-  "Passage 15": passage15,
-  "Passage 16": passage16,
-  "Passage 17": passage17,
-  "Passage 18": passage18,
-  "Passage 19": passage19,
-  "Passage 20": passage20,
-  "Passage 21": passage21,
-  "Passage 22": passage22,
-  "Passage 23": passage23,
-  "Passage 24": passage24,
-  "Passage 25": passage25,
-  "Passage 26": passage26,
-  "Passage 27": passage27,
-  "Passage 28": passage28,
-  "Passage 29": passage29,
-  "Passage 30": passage30,
-  "Passage 31": passage31,
-  "Passage 32": passage32,
-  "Passage 33": passage33,
-  "Passage 34": passage34,
-  "Passage 35": passage35,
-  "Passage 36": passage36,
-  "Passage 37": passage37,
-  "Passage 38": passage38,
-  "Passage 39": passage39,
-  "Passage 40": passage40,
-  "Passage 41": passage41,
-  "Passage 42": passage42,
-  "Passage 43": passage43,
-  "Passage 44": passage44,
-  "Passage 45": passage45,
-  "Passage 46": passage46,
-  "Passage 47": passage47,
-  "Passage 48": passage48,
-  "Passage 49": passage49,
-  "Passage 50": passage50,
-  "Passage 51": passage51,
-  "Passage 52": passage52,
-  "Passage 53": passage53,
-  "Passage 54": passage54,
-  "Passage 55": passage55,
-  "Passage 56": passage56,
-  "Passage 57": passage57,
-  "Passage 58": passage58,
-  "Passage 59": passage59,
-  "Marathi Passage 1 (Easy)": marathiPassage1Easy,
-  "Passage 61": passage61,
-  "Passage 62": passage62,
-  "Passage 63": passage63,
-  "Passage 64": passage64,
-  "Passage 65": passage65,
-  "Passage 66": passage66,
-  "Passage 67": passage67,
-  "Passage 68": passage68,
-  "Passage 69": passage69,
-  "Passage 70": passage70,
-  "Passage 71": passage71,
-  "Passage 72": passage72,
-  "Passage 73": passage73,
-  "Passage 74": passage74,
-  "Passage 75": passage75,
-  "Passage 76": passage76,
-  "Passage 77": passage77,
-  "Passage 78": passage78,
-  "Passage 79": passage79,
-  "Passage 80": passage80,
-  "Passage 81": passage81,
-  "Passage 82": passage82,
-  "Passage 83": passage83,
-  "Passage 84": passage84,
-  "Passage 85": passage85,
-  "Passage 86": passage86,
-  "Passage 87": passage87,
-  "Passage 88": passage88,
-  "Passage 89": passage89,
-  "Passage 90": passage90,
-  "Passage 91": passage91,
-  "Passage 92": passage92,
-  "Passage 93": passage93,
-  "Passage 94": passage94,
-  "Passage 95": passage95,
-  "Passage 96": passage96,
-  "Passage 97": passage97,
-  "Passage 98": passage98,
-  "Passage 99": passage99,
-  "Passage 100": passage100,
-  "Passage 101": passage101,
-  "Passage 102": passage102,
-  "Passage 103": passage103,
-  "Passage 104": passage104,
-  "Passage 105": passage105,
-  "Passage 106": passage106,
-  "Passage 107": passage107,
-  "Passage 108": passage108,
-  "Passage 109": passage109,
-  "Passage 110": passage110,
-  "Passage 111": passage111,
-  "Passage 112": passage112,
-  "Passage 113": passage113,
-  "Passage 114": passage114,
-  "Passage 115": passage115,
-  "Passage 116": passage116,
-  "Passage 117": passage117,
-  "Passage 118": passage118,
-  "Passage 119": passage119,
-  "Passage 120": passage120,
-  "Passage 121": passage121,
-"Passage 122": passage122,
-"Passage 123": passage123,
-"Passage 124": passage124,
-"Passage 125": passage125,
-"Passage 126": passage126,
-"Passage 127": passage127,
-"Passage 128": passage128,
-"Passage 129": passage129,
-"Passage 130": passage130,
-"Passage 131": passage131,
-"Passage 132": passage132,
-"Passage 133": passage133,
-"Passage 134": passage134,
-"Passage 135": passage135,
-"Passage 136": passage136,
-"Passage 137": passage137,
-"Passage 138": passage138,
-"Passage 139": passage139,
-"Passage 140": passage140,
-"Passage 141": passage141,
-"Passage 142": passage142,
-"Passage 143": passage143,
-"Passage 144": passage144,
-"Passage 145": passage145,
-"Passage 146": passage146,
-"Passage 147": passage147,
-"Passage 148": passage148,
-"Passage 149": passage149,
-"Passage 150": passage150
-};
+const passages = {};
+
+for (let i = 1; i <= 150; i++) {
+    passages[`English Passage ${i}`] = englishParagraphs[i];
+}
+
+console.log(passages);
+
 const minFontSize = 10; 
 const maxFontSize = 30; 
 const displayPassage = document.getElementById("displaypassage");
@@ -242,72 +98,133 @@ pendingWordCountElement.innerText =`${sampleContent.length}`;
 let previousCharacterCount = inputElement.value.length;
 let currentCharacterCount = 0;
 
-inputElement.addEventListener('input', function(event) {
+
+
+
+// Define handleInputAndKeypress function
+function handleInputAndKeypress(event) {
   if (!startTime) {
-    startTime = new Date();
-    clearInterval(timerInterval); // Clear any existing interval
-    timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
-}
-    let sample = upperBoxText.innerText.trim().split(' ');
-    
-    currentValue = inputElement.value;
-    words = currentValue.trim().split(/\s+/);
-    wordCount = words.length;
-    const sanitizedValue = currentValue.replace(/\s{2,}/g, ' ');
-    if (currentValue !== sanitizedValue) {
-        inputElement.value = sanitizedValue;
-    }
-    
-    currentCharacterCount = currentValue.length;
-    flag =1;
-    prevWordCount = wordCount;
+      startTime = new Date();
+      clearInterval(timerInterval); // Clear any existing interval
+      timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
+  }
+  let sample = upperBoxText.innerText.trim().split(' ');
 
-     if (currentCharacterCount < previousCharacterCount) {
-        
-        backSpaceCount.textContent = `${parseInt(backSpaceCount.textContent) + (previousCharacterCount - currentCharacterCount)}`;
-        resultBackSpaceCount = backSpaceCount.textContent;
-    }
-    
-    correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
-    correctWords2000 = calculateCorrectKeystrokes(sample, words)[1];
-    document.getElementById("errorcount").textContent = (calculateCorrectKeystrokes(sample, words)[2]);
-    document.getElementById("box2").innerHTML = calculateCorrectKeystrokes(sample, words)[3].join(" ");
-    document.getElementById("box1").innerHTML = calculateCorrectKeystrokes(sample, words)[4].join(" ");
+  currentValue = inputElement.value;
+  words = currentValue.trim().split(/\s+/);
+  wordCount = words.length;
+  const sanitizedValue = currentValue.replace(/\s{2,}/g, ' ');
+  if (currentValue !== sanitizedValue) {
+      inputElement.value = sanitizedValue;
+  }
 
+  currentCharacterCount = currentValue.length;
+  flag = 1;
+  prevWordCount = wordCount;
 
-  
-  
-    
+  if (currentCharacterCount < previousCharacterCount) {
 
-    // correctWords2000 = 0;
-    // correctKeyStroke2000 = 0;
-    // Filter words that match sample words or occur later in the sample
+      backSpaceCount.textContent = `${parseInt(backSpaceCount.textContent) + (previousCharacterCount - currentCharacterCount)}`;
+      resultBackSpaceCount = backSpaceCount.textContent;
+  }
 
+  correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
+  correctWords2000 = calculateCorrectKeystrokes(sample, words)[1];
+  document.getElementById("errorcount").textContent = Math.min((calculateCorrectKeystrokes(sample, words)[2]),wordCount);
+    document.getElementById("errorcount").textContent = 0;
+  document.getElementById("box2").innerHTML = calculateCorrectKeystrokes(sample, words)[3].join(" ");
+  document.getElementById("box1").innerHTML = calculateCorrectKeystrokes(sample, words)[4].join(" ");
 
-    // Update previous character count
-    previousCharacterCount = currentCharacterCount;
+  previousCharacterCount = currentCharacterCount;
 
-    // Other counting logic
-    // Count words
-    wordCountElement.textContent = `${wordCount}`;
-    totalWords2000 = wordCount;
-    incorrectWords2000 = totalWords2000 - correctWords2000;
+  wordCountElement.textContent = `${wordCount}`;
+  totalWords2000 = wordCount;
+  incorrectWords2000 = totalWords2000 - correctWords2000;
 
-    // Count keystrokes
-    const actualKeystrokesCount = currentCharacterCount - (currentValue.match(/ +/g) || []).reduce((total, space) => total + space.length - 1, 0);
-    keystrokesCountElement.textContent = `${actualKeystrokesCount}`;
-    totalKeyStrokes2000 = actualKeystrokesCount;
-    incorrectKeyStrokes2000 = totalKeyStrokes2000 - correctKeyStroke2000;
-    correctkeystrokesPercent2000 = (correctKeyStroke2000/totalKeyStrokes2000)*100;
-    correctkeystrokesPercent2000 = parseFloat(correctkeystrokesPercent2000.toFixed(2));
-    passFailValue = isPass(correctKeyStroke2000);
+  const actualKeystrokesCount = currentCharacterCount - (currentValue.match(/ +/g) || []).reduce((total, space) => total + space.length - 1, 0);
+  keystrokesCountElement.textContent = `${actualKeystrokesCount}`;
+  totalKeyStrokes2000 = actualKeystrokesCount;
+  incorrectKeyStrokes2000 = totalKeyStrokes2000 - correctKeyStroke2000;
+  correctkeystrokesPercent2000 = (correctKeyStroke2000 / totalKeyStrokes2000) * 100;
+  correctkeystrokesPercent2000 = parseFloat(correctkeystrokesPercent2000.toFixed(2));
+  passFailValue = isPass(correctKeyStroke2000);
 
-    // Count Pending words
-    pendingWordCountElement.textContent = `${parseInt(totalWordsCount.textContent) - parseInt(wordCountElement.textContent)}`;
-    if(!inputElement.value){
+  pendingWordCountElement.textContent = `${parseInt(totalWordsCount.textContent) - parseInt(wordCountElement.textContent)}`;
+  if (!inputElement.value) {
       previousCharacterCount = 0;
   }
+}
+
+function handleInputAndKeypress(event) {
+  if (!startTime) {
+      startTime = new Date();
+      clearInterval(timerInterval); // Clear any existing interval
+      timerInterval = setInterval(updateTimer, 1000); // Start updating timer every second
+  }
+  let sample = upperBoxText.innerText.trim().split(' ');
+
+  currentValue = inputElement.value;
+  words = currentValue.trim().split(/\s+/);
+  wordCount = words.length;
+  const sanitizedValue = currentValue.replace(/\s{2,}/g, ' ');
+  if (currentValue !== sanitizedValue) {
+      inputElement.value = sanitizedValue;
+  }
+
+  currentCharacterCount = currentValue.length;
+  flag = 1;
+  prevWordCount = wordCount;
+
+  if (currentCharacterCount < previousCharacterCount) {
+
+      backSpaceCount.textContent = `${parseInt(backSpaceCount.textContent) + (previousCharacterCount - currentCharacterCount)}`;
+      resultBackSpaceCount = backSpaceCount.textContent;
+  }
+
+  correctKeyStroke2000 = calculateCorrectKeystrokes(sample, words)[0];
+  correctWords2000 = calculateCorrectKeystrokes(sample, words)[1];
+  document.getElementById("errorcount").textContent = (calculateCorrectKeystrokes(sample, words)[2]);
+  document.getElementById("box2").innerHTML = calculateCorrectKeystrokes(sample, words)[3].join(" ");
+  document.getElementById("box1").innerHTML = calculateCorrectKeystrokes(sample, words)[4].join(" ");
+
+  previousCharacterCount = currentCharacterCount;
+
+  wordCountElement.textContent = `${wordCount}`;
+  totalWords2000 = wordCount;
+  incorrectWords2000 = totalWords2000 - correctWords2000;
+
+  const actualKeystrokesCount = currentCharacterCount - (currentValue.match(/ +/g) || []).reduce((total, space) => total + space.length - 1, 0);
+  keystrokesCountElement.textContent = `${actualKeystrokesCount}`;
+  totalKeyStrokes2000 = actualKeystrokesCount;
+  incorrectKeyStrokes2000 = totalKeyStrokes2000 - correctKeyStroke2000;
+  correctkeystrokesPercent2000 = (correctKeyStroke2000 / totalKeyStrokes2000) * 100;
+  correctkeystrokesPercent2000 = parseFloat(correctkeystrokesPercent2000.toFixed(2));
+  passFailValue = isPass(correctKeyStroke2000);
+
+  pendingWordCountElement.textContent = `${parseInt(totalWordsCount.textContent) - parseInt(wordCountElement.textContent)}`;
+  if (!inputElement.value) {
+      previousCharacterCount = 0;
+  }
+}
+
+// Attach event listeners to inputElement
+inputElement.addEventListener('input', function(event) {
+  if (event.target.value !== currentValue) {
+      handleInputAndKeypress(event);
+  }
 });
+function convertKeyBoardToMarathi() {
+  inputElement.addEventListener('keypress', replaceWithMarathi);
+  inputElement.addEventListener('keypress', handleInputAndKeypress);
+  inputElement.addEventListener('input', handleInputAndKeypress);
+}
+
+function convertKeyboardToEnglish() {
+  inputElement.removeEventListener('keypress', replaceWithMarathi);
+  inputElement.removeEventListener('input', handleInputAndKeypress);
+}
+
+
 
 
 inputElement.addEventListener('keyup', function(event) {
@@ -439,7 +356,8 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
           
           
           // Omission of word
-          errorCount++;
+          if(userWords[userIndex].length){
+          errorCount++;}
 
           if (screenWords.slice(screenIndex + 1).join(" ").includes(userWords[userIndex])) {
               screenIndex++;
@@ -471,6 +389,7 @@ function calculateCorrectKeystrokes(screenWords, userWords) {
 
       screenIndex++;
       userIndex++;
+    
   }
 
   return [Math.max(correctKeystrokes+correctWords-1,0), correctWords,errorCount,arrayForComparingPassage,arrayForComparingPassage2];
@@ -550,158 +469,9 @@ function resetAllSelects(){
 
 
 function passageNumber() {
-  const passages = {
-    [englishPassage1]: "English Passage 1 (Easy)",
-    [passage2]: "Passage 2",
-    [passage3]: "Passage 3",
-    [passage4]: "Passage 4",
-    [passage5]: "Passage 5",
-    [passage6]: "Passage 6",
-    [passage7]: "Passage 7",
-    [passage8]: "Passage 8",
-    [passage9]: "Passage 9",
-    [passage10]: "Passage 10",
-    [passage11]: "Passage 11",
-    [passage12]: "Passage 12",
-    [passage13]: "Passage 13",
-    [passage14]: "Passage 14",
-    [passage15]: "Passage 15",
-    [passage16]: "Passage 16",
-    [passage17]: "Passage 17",
-    [passage18]: "Passage 18",
-    [passage19]: "Passage 19",
-    [passage20]: "Passage 20",
-    [passage21]: "Passage 21",
-    [passage22]: "Passage 22",
-    [passage23]: "Passage 23",
-    [passage24]: "Passage 24",
-    [passage25]: "Passage 25",
-    [passage26]: "Passage 26",
-    [passage27]: "Passage 27",
-    [passage28]: "Passage 28",
-    [passage29]: "Passage 29",
-    [passage30]: "Passage 30",
-    [passage31]: "Passage 31",
-    [passage32]: "Passage 32",
-    [passage33]: "Passage 33",
-    [passage34]: "Passage 34",
-    [passage35]: "Passage 35",
-    [passage36]: "Passage 36",
-    [passage37]: "Passage 37",
-    [passage38]: "Passage 38",
-    [passage39]: "Passage 39",
-    [passage40]: "Passage 40",
-    [passage41]: "Passage 41",
-    [passage42]: "Passage 42",
-    [passage43]: "Passage 43",
-    [passage44]: "Passage 44",
-    [passage45]: "Passage 45",
-    [passage46]: "Passage 46",
-    [passage47]: "Passage 47",
-    [passage48]: "Passage 48",
-    [passage49]: "Passage 49",
-    [passage50]: "Passage 50",
-    [passage51]: "Passage 51",
-    [passage52]: "Passage 52",
-    [passage53]: "Passage 53",
-    [passage54]: "Passage 54",
-    [passage55]: "Passage 55",
-    [passage56]: "Passage 56",
-    [passage57]: "Passage 57",
-    [passage58]: "Passage 58",
-    [passage59]: "Passage 59",
-    [marathiPassage1Easy]: "Marathi Passage 1 (Easy)",
-    [passage61]: "Passage 61",
-    [passage62]: "Passage 62",
-    [passage63]: "Passage 63",
-    [passage64]: "Passage 64",
-    [passage65]: "Passage 65",
-    [passage66]: "Passage 66",
-    [passage67]: "Passage 67",
-    [passage68]: "Passage 68",
-    [passage69]: "Passage 69",
-    [passage70]: "Passage 70",
-    [passage71]: "Passage 71",
-    [passage72]: "Passage 72",
-    [passage73]: "Passage 73",
-    [passage74]: "Passage 74",
-    [passage75]: "Passage 75",
-    [passage76]: "Passage 76",
-    [passage77]: "Passage 77",
-    [passage78]: "Passage 78",
-    [passage79]: "Passage 79",
-    [passage80]: "Passage 80",
-    [passage81]: "Passage 81",
-    [passage82]: "Passage 82",
-    [passage83]: "Passage 83",
-    [passage84]: "Passage 84",
-    [passage85]: "Passage 85",
-    [passage86]: "Passage 86",
-    [passage87]: "Passage 87",
-    [passage88]: "Passage 88",
-    [passage89]: "Passage 89",
-    [passage90]: "Passage 90",
-    [passage91]: "Passage 91",
-    [passage92]: "Passage 92",
-    [passage93]: "Passage 93",
-    [passage94]: "Passage 94",
-    [passage95]: "Passage 95",
-    [passage96]: "Passage 96",
-    [passage97]: "Passage 97",
-    [passage98]: "Passage 98",
-    [passage99]: "Passage 100",
-    [passage100]: "Passage 100",
-    [passage101]: "Passage 101",
-    [passage102]: "Passage 102",
-    [passage103]: "Passage 103",
-    [passage104]: "Passage 104",
-    [passage105]: "Passage 105",
-    [passage106]: "Passage 106",
-    [passage107]: "Passage 107",
-    [passage108]: "Passage 108",
-    [passage109]: "Passage 109",
-    [passage110]: "Passage 110",
-    [passage111]: "Passage 111",
-    [passage112]: "Passage 112",
-    [passage113]: "Passage 113",
-    [passage114]: "Passage 114",
-    [passage115]: "Passage 115",
-    [passage116]: "Passage 116",
-    [passage117]: "Passage 117",
-    [passage118]: "Passage 118",
-    [passage119]: "Passage 119",
-    [passage120]: "Passage 120",
-    [passage121]: "Passage 121",
-    [passage122]: "Passage 122",
-    [passage123]: "Passage 123",
-    [passage124]: "Passage 124",
-    [passage125]: "Passage 125",
-    [passage126]: "Passage 126",
-    [passage127]: "Passage 127",
-    [passage128]: "Passage 128",
-    [passage129]: "Passage 129",
-    [passage130]: "Passage 130",
-    [passage131]: "Passage 131",
-    [passage132]: "Passage 132",
-    [passage133]: "Passage 133",
-    [passage134]: "Passage 134",
-    [passage135]: "Passage 135",
-    [passage136]: "Passage 136",
-    [passage137]: "Passage 137",
-    [passage138]: "Passage 138",
-    [passage139]: "Passage 139",
-    [passage140]: "Passage 140",
-    [passage141]: "Passage 141",
-    [passage142]: "Passage 142",
-    [passage143]: "Passage 143",
-    [passage144]: "Passage 144",
-    [passage145]: "Passage 145",
-    [passage146]: "Passage 146",
-    [passage147]: "Passage 147",
-    [passage148]: "Passage 148",
-    [passage149]: "Passage 149",
-    [passage150]: "Passage 150"
-  };
+  for (let i = 1; i <= 150; i++) {
+    passages[englishParagraphs[i]] = `English Passage ${i}`
+}
 
   return passages[upperBoxText.textContent] || "Passage not found!";
 }
@@ -841,12 +611,8 @@ function replaceWithMarathi(event) {
     event.target.setSelectionRange(selectionStart + 1, selectionStart + 1); // Move cursor to the next position
   }
 }
-function convertKeyBoardToMarathi(){
-inputElement.addEventListener('keypress', replaceWithMarathi);
-}
-function convertKeyboardToEnglish() {
-  inputElement.removeEventListener('keypress', replaceWithMarathi);
-}
+
+
 function startTimerforButton() {
   if (!startTime) {
       startTime = new Date();
@@ -1042,17 +808,6 @@ function disableRightClick(event) {
   location.reload();
  }
 
-document.addEventListener("DOMContentLoaded", function() {
-  var inputElement = document.getElementById("textInput");
-
-  inputElement.addEventListener("keydown", function(event) {
-    // Check if the backspace key is pressed and if multiple characters are selected
-    if (event.key === "Backspace" && inputElement.selectionStart !== inputElement.selectionEnd) {
-      // Prevent the default behavior of the backspace key
-      event.preventDefault();
-    }
-  });
-});
 
 document.addEventListener("DOMContentLoaded", function() {
   var languageSelect = document.getElementById('language-select');
@@ -1060,9 +815,14 @@ document.addEventListener("DOMContentLoaded", function() {
   var passageSelect = document.getElementById('passage-select');
 
   // Define passages for each language and difficulty level
+  const easyEnglishPassages = [];
+
+for (let i = 1; i <= 150; i++) {
+    easyEnglishPassages.push(`English Passage ${i}`);
+}
   var passages = {
     'English': {
-      'Easy': ['English Passage 1 (Easy)', 'Passage 2', 'Passage 3 (Easy)'],
+      'Easy': easyEnglishPassages,
       'Medium': ['Passage 1 (Medium)', 'Passage 2 (Medium)', 'Passage 3 (Medium)'],
       'Hard': ['Passage 1 (Hard)', 'Passage 2 (Hard)', 'Passage 3 (Hard)']
     },
