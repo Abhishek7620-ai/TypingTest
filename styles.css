@@ -16,26 +16,30 @@ body {
 
 /* Navbar container */
 .navbar {
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color:#2ecc71;
-    color: white;
+    /* padding: 15px 30px; */
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    color: rgb(19, 16, 16);
     font-family: Arial, sans-serif;
-    border-radius:35px;
     max-height: 70px;
 }
 
 /* Student Name and Passage Info */
 .student-name,
 .passage-info {
-    margin-right: 20px;
+    margin-right: 10px;
     display:flex;
+    border:1px solid black;
+    height:50px;
+    background-color: yellow;
+    border-radius: 15px;
+    text-align:center;
+    width:180px;
 }
-#displaypassage,#displayStudentName{
-margin-left:10px;
-}
+
 
 
 /* Passage selectors */
@@ -103,19 +107,13 @@ height:30px;
 }
 
 /* Timer reset button */
-#resetTimeButton {
-    margin-left: 15px;
-    padding: 8px 15px;
-    border: none;
-    background-color: #f44336;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+
 
 #resetTimeButton:hover {
     background-color: #d32f2f;
+}
+#startTimerButton:hover {
+  background-color: #d32f2f;
 }
 #closeButton{
   background-color: rgb(206, 17, 17);
@@ -133,11 +131,12 @@ height:30px;
   /* Box and textarea styles */
   .box, textarea {
     background-color: #fff; /* White background */
+    
     font-weight:bold;
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 22px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 1100px; /* Retain width for desktop */
@@ -166,17 +165,18 @@ height:30px;
     border: 1px solid #ddd; /* Light gray border */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    width: 180px; /* Set width */
-    margin-left: 20px; /* Center horizontally with margins */
+    width: 240px; /* Set width */
     text-align: left; /* Align text to the left */
     display: flex; /* Use flexbox */
     flex-direction: column; /* Align items vertically */
+    font-size:20px;
+    margin-left:2px;
 }
 
 #countsBox span {
     margin-bottom: 10px; /* Add space between elements */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a modern sans-serif font */
-    font-size: 16px; /* Set font size */
+    font-size: 20px; /* Set font size */
     color: #333; /* Dark gray text color */
     line-height: 1.4; /* Improved readability with slightly increased line height */
 }
@@ -207,7 +207,7 @@ height:30px;
   /* Submit button styles */
   #submitBtn {
     padding: 8px 16px; /* Decrease padding */
-    font-size: 16px;
+    font-size: 20px;
     background-color: #000080;
     color: white; /* White text color */
     border: none;
@@ -251,9 +251,9 @@ height:30px;
     -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
-#resetTimeButton {
+#resetTimeButton,#startTimerButton {
   background-color: #e8eee9; /* Green */
-  width: 120px;
+  width: 80px;
   border: none;
   color: #3498db;
   padding: 8px 0;
@@ -728,3 +728,4 @@ textarea {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard syntax */
 }
+
