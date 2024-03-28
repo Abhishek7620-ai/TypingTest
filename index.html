@@ -6,16 +6,7 @@
 <title>Typing Test</title>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typin - Signup</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+
 <body onload="checkLoggedIn()">
   <div id="loginForUser">
     <div class="containe3">
@@ -44,7 +35,7 @@
   <div id="signupForUser">
 
 <h2 class="form-title">Signup Form</h2>
-<form id="signupForm"  method="post" >
+<form id="signupForm"  method="post" action="server.php" >
     <label for="signup_username">Username:</label>
     <input type="text" id="signup_username" name="signup_username" autocomplete="username" required>
     <label for="signup_password">Password:</label>
@@ -57,7 +48,7 @@
     <input type="text" id="fullname" name="fullname" required>
     <label for="dob">Date of Birth:</label>
     <input type="date" id="dob" name="dob" required>
-    <input type="button"  value="Signup" onclick="validateSignupForm()">
+    <input type="submit"  value="Signup" onclick="validateSignupForm()">
     <p id="signupError" class="error"></p>
 </form>
 

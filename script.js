@@ -241,9 +241,11 @@ inputElement.addEventListener('keyup', function(event) {
         wordCountElement.textContent = `${wordCount}`;
         totalWords2000 = wordCount;
         incorrectWords2000 = totalWords2000 - correctWords2000;
-        if (!currentValue) {
-            pendingWordCountElement.textContent = `${sampleContent.length}`;
+        if(!inputElement.value){
+          pendingWordCountElement.innerText =`${totalWordsCount.textContent}`;
         }
+
+
     }
 });
 let CurrentDisplaySeconds = document.getElementById("screenTimer").textContent.split(":").map(Number)[0]*60 + document.getElementById("screenTimer").textContent.split(":").map(Number)[1];
