@@ -35,7 +35,7 @@
   <div id="signupForUser">
 
 <h2 class="form-title">Signup Form</h2>
-<form id="signupForm"  method="post" action="server.php" >
+<form id="signupForm"  method="post" >
     <label for="signup_username">Username:</label>
     <input type="text" id="signup_username" name="signup_username" autocomplete="username" required>
     <label for="signup_password">Password:</label>
@@ -48,7 +48,7 @@
     <input type="text" id="fullname" name="fullname" required>
     <label for="dob">Date of Birth:</label>
     <input type="date" id="dob" name="dob" required>
-    <input type="submit"  value="Signup" onclick="validateSignupForm()">
+    <input type="button"  value="Signup" onclick="validateSignupForm()">
     <p id="signupError" class="error"></p>
 </form>
 
