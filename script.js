@@ -516,7 +516,7 @@ const marathiKeyboardMapping={
 
 'd' : 'क',
 
-'e' : 'म'.
+'e' : 'म',
 
 'f' : '‍ि',
 
@@ -546,7 +546,7 @@ const marathiKeyboardMapping={
 
 's' : 'े',
 
-'t' : 'ज'
+'t' : 'ज',
 
 'u' : 'न',
 
@@ -581,7 +581,7 @@ const marathiKeyboardMapping={
 
 'J' : 'श्र' ,
 
-'K' : 'ज्ञ'
+'K' : 'ज्ञ',
 
 'L' : 'स्‍',
 
@@ -593,13 +593,13 @@ const marathiKeyboardMapping={
 
 'P' : 'च्‍',
 
-'Q' - फ
+'Q' : 'फ',
 
-'R' - त्‍
+'R' : 'त्‍',
 
-'S' - ै
+'S' :' ै',
 
-'T' - ज्‍
+'T' :'ज्‍',
 
 'U' : 'न्‍',
 
@@ -644,9 +644,7 @@ const marathiKeyboardMapping={
 
 ']' : ',',
 
-'\' : '.',
-
-';' : 'य',
+";" : 'य',
 
 "'" : 'श्‍',
 
@@ -688,7 +686,7 @@ const marathiKeyboardMapping={
 
 '|' :'|',
 
-':' : 'रू'
+':' : 'रू',
 
 '"' : 'ष्‍',
 
