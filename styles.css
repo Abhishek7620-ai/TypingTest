@@ -136,7 +136,7 @@ body {
     background-color: rgb(206, 17, 17);
   }
     /* Main container1 styles */
-    #maincontainer{display:none;}
+    #maincontainer{display:block;}
     .container1 {
       max-width: 1200px;
       margin: 10px 20px; /* Center the container */
