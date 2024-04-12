@@ -1,5 +1,6 @@
-name: CI/CD Pipeline
+name: Push-to-EC2
 
+# Trigger deployment only on push to main branch
 on:
   push:
     branches:
@@ -7,18 +8,29 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to EC2 on main branch push
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout the files
         uses: actions/checkout@v2
 
-      - name: Deploy to EC2
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+          TARGET: /var/www/html
+
+      - name: Install Apache and start the service
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo yum -y install rsync
-            rsync -r --delete-after --quiet $GITHUB_WORKSPACE/* user@host:/var/www/html
+            sudo yum -y update
+            sudo yum -y install httpd
+            sudo systemctl start httpd
+            sudo systemctl enable httpd
